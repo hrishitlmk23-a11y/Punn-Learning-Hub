@@ -1,0 +1,3053 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Year 5 English &amp; Maths — First Session with P'Richard</title>
+
+  <!-- Google Fonts: IBM Plex Sans Thai (Thai legibility) & Plus Jakarta Sans (Clean English editorial) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet" />
+
+  <style>
+    /* =========================================================================
+       DESIGN TOKENS & RESET (Zero-Dependency Pure CSS)
+       ========================================================================= */
+    :root {
+      --navy: #0F2347;
+      --navy-mid: #16305E;
+      --navy-deep: #091731;
+      --royal: #2563EB;
+      --royal-hover: #1D4ED8;
+      --sky: #38BDF8;
+      --ice: #F1F5F9;
+      --ice-blue: #EFF6FF;
+      --white: #FFFFFF;
+      --amber: #D97706;
+      --amber-bg: #FFFBEB;
+      --amber-border: #FDE68A;
+      --emerald: #059669;
+      --emerald-bg: #ECFDF5;
+      --emerald-border: #A7F3D0;
+      --text-main: #0F2347;
+      --text-body: #334155;
+      --text-muted: #64748B;
+      --border: #E2E8F0;
+      --border-strong: #CBD5E1;
+      --radius-sm: 8px;
+      --radius-md: 14px;
+      --radius-lg: 20px;
+      --font-sans: 'Plus Jakarta Sans', 'IBM Plex Sans Thai', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      --font-thai: 'IBM Plex Sans Thai', 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+      --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      --shadow-stage: 0 24px 60px -16px rgba(15, 35, 71, 0.2), 0 6px 20px -6px rgba(15, 35, 71, 0.08);
+      --shadow-card: 0 2px 8px -2px rgba(15, 35, 71, 0.06);
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      height: 100%;
+      width: 100%;
+    }
+
+    body {
+      font-family: var(--font-thai);
+      background: radial-gradient(circle at top left, #E8F0FA 0%, #DCE5F2 100%);
+      color: var(--text-main);
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      line-height: 1.55;
+    }
+
+    button, input, textarea, select {
+      font-family: inherit;
+    }
+
+    /* =========================================================================
+       STAGE VIEWPORT & 16:9 SLIDE FRAME
+       ========================================================================= */
+    .stage-wrapper {
+      flex: 1;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 14px 18px 82px;
+      min-height: 0;
+    }
+
+    .slide-stage {
+      position: relative;
+      width: min(100%, calc((100vh - 98px) * 16 / 9));
+      max-width: 1240px;
+      aspect-ratio: 16 / 9;
+      max-height: calc(100vh - 98px);
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-stage);
+      border: 1px solid rgba(203, 213, 225, 0.85);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Slide visibility & subtle transition */
+    .slide {
+      display: none;
+      width: 100%;
+      height: 100%;
+      flex-direction: column;
+      background: var(--ice);
+      background-image: radial-gradient(rgba(15, 35, 71, 0.04) 1px, transparent 1px);
+      background-size: 22px 22px;
+      padding: 26px 34px 24px;
+      overflow-y: auto;
+    }
+
+    .slide.active {
+      display: flex;
+      animation: slideIn 0.28s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Custom subtle scrollbar */
+    .slide::-webkit-scrollbar,
+    textarea::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    .slide::-webkit-scrollbar-thumb,
+    textarea::-webkit-scrollbar-thumb {
+      background: #CBD5E1;
+      border-radius: 999px;
+    }
+
+    /* =========================================================================
+       COMMON SLIDE TYPOGRAPHY & COMPONENTS
+       ========================================================================= */
+    .slide-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 12px;
+      padding-bottom: 12px;
+      margin-bottom: 16px;
+      border-bottom: 1px solid var(--border);
+      flex-shrink: 0;
+    }
+
+    .eyebrow-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 4px;
+    }
+
+    .eyebrow {
+      font-family: var(--font-sans);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.09em;
+      color: var(--royal);
+    }
+
+    .th-tag {
+      font-family: var(--font-thai);
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--text-body);
+      background: var(--white);
+      border: 1px solid var(--border);
+      padding: 2px 10px;
+      border-radius: 999px;
+    }
+
+    .slide-title {
+      font-family: var(--font-sans);
+      font-size: clamp(20px, 2.2vw, 28px);
+      font-weight: 800;
+      color: var(--navy);
+      letter-spacing: -0.02em;
+      line-height: 1.24;
+    }
+
+    .slide-title.th-title {
+      font-family: var(--font-thai);
+      font-weight: 700;
+      line-height: 1.3;
+    }
+
+    .header-pill {
+      font-size: 12px;
+      font-weight: 600;
+      padding: 5px 12px;
+      border-radius: 999px;
+      background: var(--ice-blue);
+      color: var(--royal);
+      border: 1px solid #BFDBFE;
+      white-space: nowrap;
+    }
+
+    .card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 16px 18px;
+      box-shadow: var(--shadow-card);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      border: none;
+      border-radius: 10px;
+      font-size: 12px;
+      font-weight: 700;
+      padding: 8px 14px;
+      cursor: pointer;
+      transition: background 0.18s ease, transform 0.12s ease, border-color 0.18s ease, color 0.18s ease;
+    }
+
+    .btn:active {
+      transform: scale(0.98);
+    }
+
+    .btn-primary {
+      background: var(--royal);
+      color: var(--white);
+    }
+    .btn-primary:hover {
+      background: var(--royal-hover);
+    }
+
+    .btn-navy {
+      background: var(--navy);
+      color: var(--white);
+    }
+    .btn-navy:hover {
+      background: var(--royal);
+    }
+
+    .btn-outline {
+      background: var(--white);
+      color: var(--navy);
+      border: 1px solid var(--border-strong);
+    }
+    .btn-outline:hover {
+      background: var(--ice-blue);
+      border-color: var(--royal);
+      color: var(--royal);
+    }
+
+    .btn-emerald {
+      background: var(--emerald);
+      color: var(--white);
+    }
+    .btn-emerald:hover {
+      background: #047857;
+    }
+
+    .btn-amber {
+      background: var(--amber);
+      color: var(--white);
+    }
+    .btn-amber:hover {
+      background: #B45309;
+    }
+
+    .btn-sm {
+      padding: 5px 11px;
+      font-size: 11.5px;
+      border-radius: 8px;
+    }
+
+    .field-input,
+    .field-textarea {
+      width: 100%;
+      border: 1px solid var(--border-strong);
+      border-radius: 10px;
+      background: #F8FAFC;
+      color: var(--navy);
+      padding: 9px 12px;
+      font-size: 13px;
+      line-height: 1.5;
+      outline: none;
+      transition: border-color 0.18s ease, background 0.18s ease, box-shadow 0.18s ease;
+    }
+
+    .field-textarea {
+      resize: none;
+    }
+
+    .field-input:focus,
+    .field-textarea:focus {
+      background: var(--white);
+      border-color: var(--royal);
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    /* =========================================================================
+       SLIDE 1: COVER (NAVY ARCHITECTURAL THEME)
+       ========================================================================= */
+    .slide-cover {
+      background-color: var(--navy);
+      background-image:
+        radial-gradient(rgba(56, 189, 248, 0.16) 1.2px, transparent 1.2px),
+        linear-gradient(125deg, rgba(37, 99, 235, 0.22) 0%, rgba(15, 35, 71, 0) 56%);
+      background-size: 26px 26px, 100% 100%;
+      color: var(--white);
+      padding: 0;
+      flex-direction: row;
+    }
+
+    .cover-left {
+      flex: 1;
+      padding: 36px 42px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      z-index: 2;
+    }
+
+    .cover-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-sans);
+      font-size: 11.5px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      color: #BAE6FD;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(56, 189, 248, 0.35);
+      padding: 6px 14px;
+      border-radius: 999px;
+      width: fit-content;
+    }
+
+    .dot-sky {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--sky);
+      display: inline-block;
+    }
+
+    .cover-hero {
+      margin: auto 0;
+      padding: 18px 0;
+    }
+
+    .cover-accent-line {
+      width: 56px;
+      height: 4px;
+      border-radius: 99px;
+      background: linear-gradient(90deg, var(--sky), var(--royal));
+      margin-bottom: 18px;
+    }
+
+    .cover-title {
+      font-family: var(--font-sans);
+      font-size: clamp(30px, 3.8vw, 48px);
+      font-weight: 800;
+      line-height: 1.12;
+      letter-spacing: -0.025em;
+      color: var(--white);
+      margin-bottom: 12px;
+    }
+
+    .cover-subtitle {
+      font-family: var(--font-thai);
+      font-size: clamp(16px, 1.7vw, 21px);
+      font-weight: 500;
+      color: #CBD5E1;
+      margin-bottom: 26px;
+    }
+
+    .cover-meta-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+
+    .cover-meta-card {
+      background: rgba(255, 255, 255, 0.07);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 12px;
+      padding: 12px 14px;
+    }
+
+    .cover-meta-label {
+      font-family: var(--font-sans);
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--sky);
+      margin-bottom: 4px;
+    }
+
+    .cover-meta-value {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--white);
+      line-height: 1.4;
+    }
+
+    .cover-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1px solid rgba(255, 255, 255, 0.12);
+      padding-top: 14px;
+      font-size: 11.5px;
+      color: #94A3B8;
+    }
+
+    .cover-right {
+      width: 31%;
+      min-width: 260px;
+      background: linear-gradient(180deg, #152D5A 0%, #0C1C3A 100%);
+      border-left: 1px solid rgba(255, 255, 255, 0.1);
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      padding: 24px;
+    }
+
+    /* =========================================================================
+       SLIDE 2: TUTOR PROFILE
+       ========================================================================= */
+    .two-col-balanced {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 20px;
+      flex: 1;
+      min-height: 0;
+    }
+
+    .metrics-2x2 {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .metric-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-top: 3px solid var(--royal);
+      border-radius: var(--radius-md);
+      padding: 16px 18px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-shadow: var(--shadow-card);
+    }
+
+    .metric-card.accent-sky { border-top-color: var(--sky); }
+    .metric-card.accent-navy { border-top-color: var(--navy); }
+    .metric-card.accent-amber { border-top-color: var(--amber); }
+
+    .metric-tag {
+      font-family: var(--font-sans);
+      font-size: 10.5px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-muted);
+      margin-bottom: 4px;
+    }
+
+    .metric-big {
+      font-family: var(--font-sans);
+      font-size: clamp(24px, 2.5vw, 32px);
+      font-weight: 800;
+      color: var(--navy);
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+      margin-bottom: 10px;
+    }
+
+    .metric-sub {
+      font-size: 12px;
+      color: var(--text-body);
+      line-height: 1.5;
+      border-top: 1px solid var(--ice);
+      padding-top: 8px;
+    }
+
+    .profile-right {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .edu-box {
+      background: var(--navy);
+      color: var(--white);
+      border-radius: var(--radius-md);
+      padding: 18px 20px;
+      border-left: 4px solid var(--sky);
+    }
+
+    .edu-box h3 {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--sky);
+      margin-bottom: 10px;
+      letter-spacing: 0.03em;
+    }
+
+    .edu-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 14px;
+      line-height: 1.55;
+      margin-bottom: 8px;
+    }
+    .edu-item:last-child { margin-bottom: 0; }
+
+    .approach-box {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .approach-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .approach-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 13.5px;
+      color: var(--text-body);
+      background: var(--ice);
+      padding: 10px 12px;
+      border-radius: 10px;
+    }
+
+    .bullet-num {
+      width: 22px;
+      height: 22px;
+      border-radius: 6px;
+      background: var(--ice-blue);
+      color: var(--royal);
+      font-family: var(--font-sans);
+      font-size: 11px;
+      font-weight: 800;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    /* =========================================================================
+       SLIDE 3: AGENDA & TERM 1B ROADMAP
+       ========================================================================= */
+    .steps-4 {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+      margin-bottom: 16px;
+      flex-shrink: 0;
+    }
+
+    .step-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 12px 14px;
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      box-shadow: var(--shadow-card);
+    }
+
+    .step-badge {
+      width: 30px;
+      height: 30px;
+      border-radius: 9px;
+      background: var(--navy);
+      color: var(--white);
+      font-family: var(--font-sans);
+      font-size: 13px;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .step-card:nth-child(2) .step-badge { background: var(--royal); }
+    .step-card:nth-child(3) .step-badge { background: var(--amber); }
+    .step-card:nth-child(4) .step-badge { background: var(--emerald); }
+
+    .step-label {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--navy);
+      line-height: 1.35;
+    }
+
+    .roadmap-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+      flex: 1;
+      min-height: 0;
+    }
+
+    .roadmap-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-top: 4px solid var(--royal);
+      border-radius: var(--radius-md);
+      padding: 18px 20px;
+      display: flex;
+      flex-direction: column;
+      box-shadow: var(--shadow-card);
+    }
+
+    .roadmap-card.math-card {
+      border-top-color: var(--navy);
+    }
+
+    .roadmap-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 12px;
+    }
+
+    .roadmap-head h3 {
+      font-family: var(--font-sans);
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--navy);
+    }
+
+    .roadmap-items {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin: auto 0;
+    }
+
+    .roadmap-items li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 13.5px;
+      color: var(--text-body);
+      background: #F8FAFC;
+      border: 1px solid var(--ice);
+      padding: 10px 12px;
+      border-radius: 10px;
+    }
+
+    .roadmap-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--royal);
+      margin-top: 7px;
+      flex-shrink: 0;
+    }
+
+    .math-card .roadmap-dot {
+      background: var(--amber);
+    }
+
+    /* =========================================================================
+       SLIDE 4: ICEBREAKER
+       ========================================================================= */
+    .icebreaker-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      flex: 1;
+      margin-bottom: 14px;
+    }
+
+    .prompt-card {
+      background: var(--white);
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 18px 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      box-shadow: var(--shadow-card);
+      text-align: left;
+    }
+
+    .prompt-card:hover {
+      border-color: var(--royal);
+      transform: translateY(-2px);
+    }
+
+    .prompt-card.checked {
+      background: var(--ice-blue);
+      border-color: var(--royal);
+    }
+
+    .prompt-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+
+    .prompt-title {
+      font-family: var(--font-sans);
+      font-size: 15px;
+      font-weight: 800;
+      color: var(--royal);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .prompt-check {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      border: 1.5px solid var(--border-strong);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: 800;
+      color: transparent;
+      transition: all 0.18s ease;
+    }
+
+    .prompt-card.checked .prompt-check {
+      background: var(--emerald);
+      border-color: var(--emerald);
+      color: var(--white);
+    }
+
+    .prompt-question {
+      font-family: var(--font-sans);
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--navy);
+      line-height: 1.45;
+    }
+
+    .class-deal-banner {
+      background: var(--navy);
+      color: var(--white);
+      border-radius: 12px;
+      padding: 13px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      flex-shrink: 0;
+    }
+
+    .deal-badge {
+      font-family: var(--font-sans);
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--navy);
+      background: var(--sky);
+      padding: 4px 10px;
+      border-radius: 6px;
+      flex-shrink: 0;
+    }
+
+    .deal-text {
+      font-family: var(--font-sans);
+      font-size: 14.5px;
+      font-weight: 600;
+      color: #F1F5F9;
+      flex: 1;
+    }
+
+    /* =========================================================================
+       SLIDE 5: ENGLISH CHECK 1 — SUMMARIZING
+       ========================================================================= */
+    .story-split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+      flex: 1;
+      min-height: 0;
+    }
+
+    .story-card {
+      background: #FFFEFA;
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--royal);
+      border-radius: var(--radius-md);
+      padding: 20px 22px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-shadow: var(--shadow-card);
+    }
+
+    .story-meta {
+      font-family: var(--font-sans);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-muted);
+      margin-bottom: 4px;
+    }
+
+    .story-heading {
+      font-family: var(--font-sans);
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--navy);
+      margin-bottom: 12px;
+    }
+
+    .story-body {
+      font-family: var(--font-sans);
+      font-size: 14.2px;
+      color: var(--text-body);
+      line-height: 1.72;
+    }
+
+    .model-summary-box {
+      margin-top: 12px;
+      padding: 12px 14px;
+      border-radius: 10px;
+      background: var(--emerald-bg);
+      border: 1px solid var(--emerald-border);
+      font-family: var(--font-sans);
+      font-size: 12.2px;
+      color: #064E3B;
+      line-height: 1.5;
+    }
+
+    .organizer-card {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .field-group label {
+      display: block;
+      font-family: var(--font-sans);
+      font-size: 11.5px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--royal);
+      margin-bottom: 4px;
+    }
+
+    /* =========================================================================
+       SLIDE 6: ENGLISH CHECK 2 — EDITOR'S DESK
+       ========================================================================= */
+    .grid-2x2 {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      flex: 1;
+      min-height: 0;
+    }
+
+    .grammar-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 15px 17px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-shadow: var(--shadow-card);
+    }
+
+    .grammar-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+
+    .grammar-badge {
+      font-family: var(--font-sans);
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--royal);
+      background: var(--ice-blue);
+      padding: 4px 10px;
+      border-radius: 7px;
+    }
+
+    .grammar-badge.amber {
+      color: #B45309;
+      background: var(--amber-bg);
+      border: 1px solid var(--amber-border);
+    }
+
+    .grammar-sentence {
+      font-family: var(--font-sans);
+      font-size: 14.5px;
+      font-weight: 600;
+      color: var(--navy);
+      line-height: 1.5;
+      margin-bottom: 8px;
+    }
+
+    .grammar-fix {
+      margin-top: 8px;
+      padding: 10px 12px;
+      border-radius: 10px;
+      background: var(--emerald-bg);
+      border: 1px solid var(--emerald-border);
+      font-family: var(--font-sans);
+      font-size: 12.5px;
+      color: #064E3B;
+      line-height: 1.48;
+    }
+
+    .grammar-rule {
+      display: block;
+      font-size: 11.5px;
+      color: var(--emerald);
+      font-weight: 600;
+      margin-top: 4px;
+    }
+
+    .hl-fix {
+      background: #A7F3D0;
+      color: #064E3B;
+      padding: 1px 4px;
+      border-radius: 4px;
+      font-weight: 700;
+    }
+
+    /* =========================================================================
+       SLIDE 7: CULTURAL CINDERELLA + COUNTDOWN TIMER
+       ========================================================================= */
+    .plan-3col {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      flex: 1;
+      margin-bottom: 14px;
+    }
+
+    .plan-card {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .plan-card-title {
+      font-family: var(--font-sans);
+      font-size: 14px;
+      font-weight: 800;
+      color: var(--navy);
+    }
+
+    .plan-card-hint {
+      font-family: var(--font-sans);
+      font-size: 11.5px;
+      color: var(--text-muted);
+    }
+
+    .plan-card .field-textarea {
+      flex: 1;
+      min-height: 82px;
+    }
+
+    .sprint-bottom {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 14px;
+      flex-shrink: 0;
+    }
+
+    .checklist-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 7px;
+      margin-top: 8px;
+    }
+
+    .check-chip {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      font-family: var(--font-sans);
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--navy);
+      background: var(--ice);
+      padding: 6px 10px;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    .check-chip input {
+      accent-color: var(--emerald);
+      width: 14px;
+      height: 14px;
+      cursor: pointer;
+    }
+
+    .timer-card {
+      background: var(--navy);
+      color: var(--white);
+      border-radius: var(--radius-md);
+      padding: 14px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+    }
+
+    .timer-left {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .timer-ring-wrap {
+      position: relative;
+      width: 62px;
+      height: 62px;
+      flex-shrink: 0;
+    }
+
+    .timer-ring-label {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--sky);
+    }
+
+    .timer-digits {
+      font-family: var(--font-mono);
+      font-size: 32px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+    }
+
+    .preset-row {
+      display: flex;
+      gap: 6px;
+      margin-bottom: 5px;
+    }
+
+    .preset-btn {
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      color: #CBD5E1;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .preset-btn.active {
+      background: rgba(56, 189, 248, 0.25);
+      border-color: var(--sky);
+      color: var(--white);
+    }
+
+    .timer-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    /* =========================================================================
+       SLIDE 8: MATHS CHECK 1 — ANGLES & MISCONCEPTION OVERLAY
+       ========================================================================= */
+    .angles-4col {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+
+    .angle-card {
+      background: var(--white);
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 10px 12px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      cursor: pointer;
+      transition: border-color 0.18s ease, box-shadow 0.18s ease;
+      box-shadow: var(--shadow-card);
+    }
+
+    .angle-card:hover {
+      border-color: var(--royal);
+    }
+
+    .angle-card-top {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: var(--font-sans);
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--text-muted);
+      margin-bottom: 2px;
+    }
+
+    .angle-reveal-hint {
+      color: var(--royal);
+      font-size: 10.5px;
+    }
+
+    .angle-svg-box {
+      width: 100%;
+      height: 102px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .angle-answer-pill {
+      width: 100%;
+      margin-top: 6px;
+      padding: 6px 8px;
+      border-radius: 8px;
+      background: var(--emerald-bg);
+      border: 1px solid var(--emerald-border);
+      color: #065F46;
+      font-family: var(--font-sans);
+      font-size: 11.5px;
+      font-weight: 700;
+      text-align: center;
+      line-height: 1.3;
+    }
+
+    .trap-card {
+      flex: 1;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 14px 18px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-shadow: var(--shadow-card);
+    }
+
+    .trap-head {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 6px;
+    }
+
+    .trap-svg-wrap {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #F8FAFC;
+      border: 1px solid var(--ice);
+      border-radius: 12px;
+      padding: 4px 10px;
+      min-height: 125px;
+    }
+
+    #trap-angle-a {
+      transition: transform 0.85s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    #trap-angle-a.overlaid {
+      transform: translateX(200px);
+    }
+
+    .trap-takeaway {
+      margin-top: 8px;
+      font-family: var(--font-sans);
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .trap-takeaway.proved {
+      color: var(--emerald);
+      font-weight: 700;
+    }
+
+    /* =========================================================================
+       SLIDE 9: MATHS CHECK 2 — CALCULATIONS, NEGATIVES, TIME, SHAPES
+       ========================================================================= */
+    .math-card-box {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 14px 16px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-shadow: var(--shadow-card);
+    }
+
+    .math-q-list {
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+      margin: 6px 0;
+    }
+
+    .math-q-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      background: #F8FAFC;
+      border: 1px solid var(--ice);
+      border-radius: 9px;
+      padding: 7px 11px;
+      font-family: var(--font-sans);
+      font-size: 13.5px;
+      font-weight: 600;
+      color: var(--navy);
+    }
+
+    .math-ans-tag {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 700;
+      color: #065F46;
+      background: var(--emerald-bg);
+      border: 1px solid var(--emerald-border);
+      padding: 2px 8px;
+      border-radius: 6px;
+      white-space: nowrap;
+    }
+
+    .nl-tick-hit {
+      cursor: pointer;
+    }
+
+    .shapes-row {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      flex: 1;
+    }
+
+    .net-box {
+      background: #F8FAFC;
+      border: 1px solid var(--ice);
+      border-radius: 10px;
+      padding: 8px 12px;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* =========================================================================
+       SLIDE 10: PARENT DEBRIEF & LINE RECAP
+       ========================================================================= */
+    .debrief-3col {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      flex: 1;
+      margin-bottom: 12px;
+    }
+
+    .debrief-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-top: 4px solid var(--emerald);
+      border-radius: var(--radius-md);
+      padding: 14px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      box-shadow: var(--shadow-card);
+    }
+
+    .debrief-card.grow { border-top-color: var(--amber); }
+    .debrief-card.plan { border-top-color: var(--royal); }
+
+    .debrief-card h3 {
+      font-size: 14.5px;
+      font-weight: 700;
+      color: var(--navy);
+    }
+
+    .debrief-card .field-textarea {
+      flex: 1;
+      min-height: 110px;
+      font-size: 13px;
+    }
+
+    .schedule-callout {
+      background: var(--amber-bg);
+      border: 1px solid var(--amber-border);
+      border-radius: 12px;
+      padding: 10px 14px;
+      font-size: 13px;
+      color: #78350F;
+      margin-bottom: 12px;
+      line-height: 1.5;
+    }
+
+    .line-action-bar {
+      background: var(--navy);
+      color: var(--white);
+      border-radius: 12px;
+      padding: 12px 18px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-shrink: 0;
+    }
+
+    .inline-toast {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(5, 150, 105, 0.22);
+      border: 1px solid #34D399;
+      color: #A7F3D0;
+      font-size: 12.5px;
+      font-weight: 700;
+      padding: 5px 12px;
+      border-radius: 999px;
+      opacity: 0;
+      transform: translateY(3px);
+      transition: opacity 0.22s ease, transform 0.22s ease;
+    }
+
+    .inline-toast.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* =========================================================================
+       COLLAPSIBLE PRESENTER NOTES DRAWER & BOTTOM NAVIGATION BAR
+       ========================================================================= */
+    .notes-drawer {
+      position: fixed;
+      bottom: 72px;
+      left: 50%;
+      transform: translate(-50%, 16px);
+      width: min(760px, calc(100% - 24px));
+      background: rgba(255, 255, 255, 0.97);
+      border: 1px solid var(--border-strong);
+      border-left: 4px solid var(--royal);
+      border-radius: 14px;
+      padding: 14px 18px;
+      box-shadow: 0 20px 44px -12px rgba(15, 35, 71, 0.28);
+      z-index: 40;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.22s ease, transform 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .notes-drawer.open {
+      opacity: 1;
+      transform: translate(-50%, 0);
+      pointer-events: auto;
+    }
+
+    .notes-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 6px;
+      padding-bottom: 6px;
+      border-bottom: 1px solid var(--ice);
+    }
+
+    .notes-title {
+      font-size: 12.5px;
+      font-weight: 700;
+      color: var(--royal);
+    }
+
+    .notes-body {
+      font-size: 13.5px;
+      color: var(--text-body);
+      line-height: 1.6;
+    }
+
+    .bottom-nav {
+      position: fixed;
+      bottom: 12px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: min(1040px, calc(100% - 20px));
+      background: rgba(15, 35, 71, 0.95);
+      backdrop-filter: blur(8px);
+      color: var(--white);
+      border-radius: 15px;
+      padding: 8px 14px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      box-shadow: 0 14px 30px -8px rgba(15, 35, 71, 0.35);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      z-index: 50;
+    }
+
+    .nav-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .nav-btn {
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      color: var(--white);
+      border-radius: 9px;
+      padding: 7px 12px;
+      font-size: 12.5px;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      transition: background 0.16s ease, border-color 0.16s ease;
+      white-space: nowrap;
+    }
+
+    .nav-btn:hover:not(:disabled) {
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    .nav-btn:disabled {
+      opacity: 0.35;
+      cursor: not-allowed;
+    }
+
+    .nav-btn.primary {
+      background: var(--royal);
+      border-color: var(--royal);
+    }
+    .nav-btn.primary:hover:not(:disabled) {
+      background: var(--royal-hover);
+    }
+
+    .nav-btn.active-toggle {
+      background: rgba(56, 189, 248, 0.22);
+      border-color: var(--sky);
+      color: #E0F2FE;
+    }
+
+    .slide-counter {
+      font-family: var(--font-mono);
+      font-size: 12.5px;
+      font-weight: 700;
+      color: #CBD5E1;
+      min-width: 52px;
+      text-align: center;
+    }
+
+    .jump-pills {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .jump-pill {
+      width: 24px;
+      height: 24px;
+      border-radius: 7px;
+      border: none;
+      background: rgba(255, 255, 255, 0.11);
+      color: #CBD5E1;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.16s ease;
+    }
+
+    .jump-pill:hover {
+      background: rgba(255, 255, 255, 0.25);
+      color: var(--white);
+    }
+
+    .jump-pill.active {
+      background: var(--sky);
+      color: var(--navy-deep);
+      width: 30px;
+    }
+
+    .jump-select {
+      background: rgba(255, 255, 255, 0.12);
+      color: var(--white);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: 9px;
+      padding: 6px 10px;
+      font-size: 12px;
+      font-weight: 600;
+      outline: none;
+      cursor: pointer;
+      max-width: 190px;
+    }
+
+    .jump-select option {
+      background: var(--navy);
+      color: var(--white);
+    }
+
+    /* Global subtle toast (for fullscreen fallback or timer end) */
+    .floating-toast {
+      position: fixed;
+      top: 16px;
+      right: 16px;
+      background: var(--navy);
+      color: var(--white);
+      border: 1px solid rgba(56, 189, 248, 0.4);
+      border-radius: 12px;
+      padding: 10px 16px;
+      font-size: 13px;
+      font-weight: 600;
+      box-shadow: 0 12px 28px rgba(15, 35, 71, 0.3);
+      z-index: 60;
+      opacity: 0;
+      transform: translateY(-8px);
+      pointer-events: none;
+      transition: all 0.25s ease;
+    }
+
+    .floating-toast.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* =========================================================================
+       RESPONSIVE ADAPTATION (TABLET & MOBILE)
+       ========================================================================= */
+    @media (max-width: 960px) {
+      .stage-wrapper {
+        padding: 10px 10px 84px;
+        align-items: flex-start;
+      }
+      .slide-stage {
+        width: 100%;
+        aspect-ratio: auto;
+        max-height: none;
+        min-height: calc(100vh - 96px);
+      }
+      .slide {
+        padding: 20px 18px;
+      }
+      .slide-cover {
+        flex-direction: column;
+      }
+      .cover-left {
+        padding: 26px 22px;
+      }
+      .cover-right {
+        display: none;
+      }
+      .cover-meta-grid,
+      .two-col-balanced,
+      .steps-4,
+      .roadmap-grid,
+      .icebreaker-grid,
+      .story-split,
+      .grid-2x2,
+      .plan-3col,
+      .sprint-bottom,
+      .angles-4col,
+      .debrief-3col {
+        grid-template-columns: 1fr;
+      }
+      .angles-4col {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+      .jump-pills {
+        display: none;
+      }
+      .nav-label-desktop {
+        display: none;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .metrics-2x2,
+      .angles-4col,
+      .checklist-grid {
+        grid-template-columns: 1fr;
+      }
+      .timer-card {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .timer-actions {
+        flex-direction: row;
+      }
+      .timer-actions .btn {
+        flex: 1;
+      }
+      .shapes-row {
+        flex-direction: column;
+        align-items: stretch;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Floating Status Toast (never uses alert()) -->
+  <div id="floating-toast" class="floating-toast" role="status" aria-live="polite"></div>
+
+  <!-- =======================================================================
+       CENTERED 16:9 SLIDE STAGE
+       ======================================================================= -->
+  <main class="stage-wrapper">
+    <div id="slide-stage" class="slide-stage">
+
+      <!-- ===================================================================
+           SLIDE 1 — COVER SLIDE (Bilingual TH/EN)
+           =================================================================== -->
+      <section class="slide slide-cover active" data-slide="1" data-label="1. Cover">
+        <div class="cover-left">
+          <div class="cover-eyebrow">
+            <span class="dot-sky"></span>
+            <span>SBS BANGKOK • CAMBRIDGE YEAR 5</span>
+          </div>
+
+          <div class="cover-hero">
+            <div class="cover-accent-line"></div>
+            <h1 class="cover-title">Year 5 English &amp; Mathematics</h1>
+            <p class="cover-subtitle">ปฐมนิเทศและวัดระดับพื้นฐาน • First Tutoring Session</p>
+
+            <div class="cover-meta-grid">
+              <div class="cover-meta-card">
+                <div class="cover-meta-label">Student</div>
+                <div class="cover-meta-value">น้องปัน (Punn) — Year 5</div>
+              </div>
+              <div class="cover-meta-card">
+                <div class="cover-meta-label">Tutor</div>
+                <div class="cover-meta-value">พี่ริชาร์ด (P'Richard)</div>
+              </div>
+              <div class="cover-meta-card">
+                <div class="cover-meta-label">Focus</div>
+                <div class="cover-meta-value">Writing Structure • Grammar • Handwriting • Core Maths</div>
+              </div>
+            </div>
+
+            <button type="button" class="btn btn-primary" style="padding: 11px 20px; font-size: 13.5px;" onclick="goToSlide(2)">
+              เริ่มทำความรู้จักและดูแผนการเรียน →
+            </button>
+          </div>
+
+          <div class="cover-footer">
+            <span>Online 1-on-1 Private Tutoring • Term 1B</span>
+            <span>← / → เปลี่ยนสไลด์ • N แนวทางพูด • F เต็มจอ</span>
+          </div>
+        </div>
+
+        <!-- Geometric Architectural SVG Accent -->
+        <div class="cover-right" aria-hidden="true">
+          <svg viewBox="0 0 300 520" width="100%" height="100%" fill="none">
+            <circle cx="235" cy="95" r="115" stroke="#38BDF8" stroke-opacity="0.28" stroke-width="1.5" stroke-dasharray="5 6" />
+            <circle cx="235" cy="95" r="74" stroke="#2563EB" stroke-opacity="0.55" stroke-width="2" />
+            <line x1="25" y1="450" x2="275" y2="195" stroke="#38BDF8" stroke-opacity="0.35" stroke-width="1.5" />
+            <line x1="60" y1="485" x2="290" y2="250" stroke="#38BDF8" stroke-opacity="0.2" stroke-width="1.2" />
+            <rect x="42" y="185" width="132" height="132" rx="18" stroke="#38BDF8" stroke-opacity="0.4" stroke-width="1.5" transform="rotate(14 42 185)" />
+            <rect x="98" y="290" width="150" height="150" rx="22" fill="rgba(37, 99, 235, 0.12)" stroke="#38BDF8" stroke-opacity="0.32" stroke-width="1.5" />
+            <!-- Geometric Compass/Angle Motif -->
+            <path d="M 140 390 L 222 390 M 140 390 L 198 326" stroke="#38BDF8" stroke-width="2.5" stroke-linecap="round" />
+            <path d="M 176 390 A 36 36 0 0 0 166 362" stroke="#D97706" stroke-width="3" stroke-linecap="round" />
+            <circle cx="140" cy="390" r="4.5" fill="#FFFFFF" />
+          </svg>
+        </div>
+      </section>
+
+      <!-- ===================================================================
+           SLIDE 2 — MEET YOUR TUTOR (Thai for Parents + Key Credentials)
+           =================================================================== -->
+      <section class="slide" data-slide="2" data-label="2. พี่ริชาร์ด">
+        <div class="slide-header">
+          <div>
+            <div class="eyebrow-row">
+              <span class="eyebrow">Meet Your Tutor</span>
+              <span class="th-tag">ประวัติการศึกษาและมาตรฐานวิชาการ</span>
+            </div>
+            <h2 class="slide-title th-title">ทำความรู้จักพี่ริชาร์ด (P'Richard)</h2>
+          </div>
+          <span class="header-pill">International Curriculum Tutor</span>
+        </div>
+
+        <div class="two-col-balanced">
+          <!-- Left: 2x2 Bold Metric Cards -->
+          <div class="metrics-2x2">
+            <div class="metric-card">
+              <div>
+                <div class="metric-tag">English Proficiency</div>
+                <div class="metric-big">IELTS 8.5</div>
+              </div>
+              <div class="metric-sub">
+                Listening <strong>9.0</strong> • Reading <strong>9.0</strong><br />
+                Speaking <strong>8.0</strong> • Writing <strong>7.5</strong>
+              </div>
+            </div>
+
+            <div class="metric-card accent-amber">
+              <div>
+                <div class="metric-tag">Standardized Score</div>
+                <div class="metric-big">SAT 1580</div>
+              </div>
+              <div class="metric-sub">
+                Math <strong>800 / 800</strong> (เต็ม)<br />
+                Verbal <strong>780 / 800</strong>
+              </div>
+            </div>
+
+            <div class="metric-card accent-sky">
+              <div>
+                <div class="metric-tag">British Curriculum</div>
+                <div class="metric-big">Cambridge A* / A</div>
+              </div>
+              <div class="metric-sub">
+                IGCSE First Language English — <strong>A*</strong><br />
+                AS Level English — <strong>A</strong>
+              </div>
+            </div>
+
+            <div class="metric-card accent-navy">
+              <div>
+                <div class="metric-tag">Trilingual Strength</div>
+                <div class="metric-big">HSK Level 5</div>
+              </div>
+              <div class="metric-sub">
+                Multilingual Academic Background<br />
+                (Thai • English • Mandarin)
+              </div>
+            </div>
+          </div>
+
+          <!-- Right: Education & Teaching Approach in Polite Thai -->
+          <div class="profile-right">
+            <div class="edu-box">
+              <h3>ประวัติการศึกษา (Education)</h3>
+              <div class="edu-item">
+                <span class="dot-sky" style="margin-top: 8px; flex-shrink: 0;"></span>
+                <div><strong>มัธยม:</strong> โรงเรียนนานาชาติไทย-สิงคโปร์ (TSIS)</div>
+              </div>
+              <div class="edu-item">
+                <span class="dot-sky" style="margin-top: 8px; flex-shrink: 0;"></span>
+                <div><strong>ปัจจุบัน:</strong> จุฬาลงกรณ์มหาวิทยาลัย คณะอักษรศาสตร์ ภาคอินเตอร์ (BALAC)</div>
+              </div>
+            </div>
+
+            <div class="card approach-box">
+              <div>
+                <div class="eyebrow" style="margin-bottom: 4px;">Teaching Approach</div>
+                <h3 style="font-size: 16px; font-weight: 700; color: var(--navy);">แนวทางการสอนสำหรับน้องปัน</h3>
+                <ul class="approach-list">
+                  <li>
+                    <span class="bullet-num">1</span>
+                    <span>เน้นจัดโครงสร้างความคิด (<strong>Structured Writing</strong>) ให้สรุปใจความและเรียบเรียงประโยคได้เป็นระบบ</span>
+                  </li>
+                  <li>
+                    <span class="bullet-num">2</span>
+                    <span>ปูพื้นฐานแกรมมาร์และคณิตศาสตร์ให้แม่นยำตามหลักสูตร <strong>Cambridge</strong> ตรงกับบทเรียนที่ SBS</span>
+                  </li>
+                  <li>
+                    <span class="bullet-num">3</span>
+                    <span>บรรยากาศสนุกเป็นกันเองแต่มีกรอบเวลาชัดเจน ช่วยคุมโฟกัสและส่งสรุปหลังเรียนให้ผู้ปกครอง</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================================================================
+           SLIDE 3 — TONIGHT'S AGENDA & TERM 1B ROADMAP (Thai for Parents)
+           =================================================================== -->
+      <section class="slide" data-slide="3" data-label="3. แผนการเรียน">
+        <div class="slide-header">
+          <div>
+            <div class="eyebrow-row">
+              <span class="eyebrow">Tonight's Agenda &amp; Term 1B Roadmap</span>
+              <span class="th-tag">SBS Bangkok Year 5</span>
+            </div>
+            <h2 class="slide-title th-title">แผนการเรียนวันนี้และเทอม 1B</h2>
+          </div>
+          <span class="header-pill">คาบแรกประมาณ 50–60 นาที</span>
+        </div>
+
+        <!-- Top Horizontal 4-Step Flow -->
+        <div class="steps-4">
+          <div class="step-card">
+            <span class="step-badge">1</span>
+            <div class="step-label">พูดคุย &amp; วางแผน<br /><span style="font-weight:500;color:var(--text-muted);font-size:12px;">(10 นาที)</span></div>
+          </div>
+          <div class="step-card">
+            <span class="step-badge">2</span>
+            <div class="step-label">เช็กพื้นฐาน English<br /><span style="font-weight:500;color:var(--text-muted);font-size:12px;">(20 นาที)</span></div>
+          </div>
+          <div class="step-card">
+            <span class="step-badge">3</span>
+            <div class="step-label">เช็กพื้นฐาน Maths<br /><span style="font-weight:500;color:var(--text-muted);font-size:12px;">(15 นาที)</span></div>
+          </div>
+          <div class="step-card">
+            <span class="step-badge">4</span>
+            <div class="step-label">สรุปผลกับผู้ปกครอง<br /><span style="font-weight:500;color:var(--text-muted);font-size:12px;">(5–10 นาที)</span></div>
+          </div>
+        </div>
+
+        <!-- Bottom 2-Column SBS Term 1B Alignment Cards -->
+        <div class="roadmap-grid">
+          <div class="roadmap-card">
+            <div class="roadmap-head">
+              <h3>English (Term 1B)</h3>
+              <span class="header-pill">Writing • Grammar • Poetry</span>
+            </div>
+            <ul class="roadmap-items">
+              <li><span class="roadmap-dot"></span><span><strong>Comparing Traditional Tales &amp; Cultural Cinderella</strong> — เปรียบเทียบนิทานและเขียนเรื่องเวอร์ชันของตัวเอง</span></li>
+              <li><span class="roadmap-dot"></span><span><strong>Summarizing &amp; Organizing Ideas</strong> — ฝึกจับใจความและวางโครงสร้างก่อนเขียน</span></li>
+              <li><span class="roadmap-dot"></span><span><strong>Grammar Precision:</strong> Tenses, Clauses, Homophones &amp; Direct Speech</span></li>
+              <li><span class="roadmap-dot"></span><span><strong>Handwriting Habits &amp; Narrative Poetry</strong> — ฝึกลายมือให้อ่านง่ายและเข้าใจจังหวะบทกวี</span></li>
+            </ul>
+          </div>
+
+          <div class="roadmap-card math-card">
+            <div class="roadmap-head">
+              <h3>Mathematics (Term 1B)</h3>
+              <span class="header-pill" style="background:#FFFBEB;color:#B45309;border-color:#FDE68A;">Angles • Shapes • Calculations</span>
+            </div>
+            <ul class="roadmap-items">
+              <li><span class="roadmap-dot"></span><span><strong>Angles (Acute, Obtuse, Reflex) &amp; Measuring</strong> — แยกประเภทและวัดมุมอย่างแม่นยำ</span></li>
+              <li><span class="roadmap-dot"></span><span><strong>2D/3D Shapes, Triangles &amp; Nets</strong> — ชนิดสามเหลี่ยมและรูปคลี่เรขาคณิต 3 มิติ</span></li>
+              <li><span class="roadmap-dot"></span><span><strong>Decimals &amp; Positive/Negative Numbers</strong> — บวกลบทศนิยมและคำนวณข้ามศูนย์</span></li>
+              <li><span class="roadmap-dot"></span><span><strong>Time Intervals &amp; Time Zones</strong> — คำนวณช่วงเวลาและเทียบเวลาต่างประเทศ</span></li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================================================================
+           SLIDE 4 — QUICK ICEBREAKER (English + Subtle TH Tag)
+           =================================================================== -->
+      <section class="slide" data-slide="4" data-label="4. Icebreaker">
+        <div class="slide-header">
+          <div>
+            <div class="eyebrow-row">
+              <span class="eyebrow">Quick Icebreaker</span>
+              <span class="th-tag">ทำความรู้จักน้องปัน</span>
+            </div>
+            <h2 class="slide-title">Getting to Know Punn</h2>
+          </div>
+          <span class="header-pill">Click a Card When Covered</span>
+        </div>
+
+        <div class="icebreaker-grid">
+          <button type="button" class="prompt-card" onclick="togglePromptCard(this)">
+            <div class="prompt-top">
+              <span class="prompt-title">01 • Sports &amp; Games</span>
+              <span class="prompt-check">✓</span>
+            </div>
+            <p class="prompt-question">What do you love playing after school or on weekends?</p>
+          </button>
+
+          <button type="button" class="prompt-card" onclick="togglePromptCard(this)">
+            <div class="prompt-top">
+              <span class="prompt-title">02 • Current Read</span>
+              <span class="prompt-check">✓</span>
+            </div>
+            <p class="prompt-question">What library book are you reading for your reading log right now?</p>
+          </button>
+
+          <button type="button" class="prompt-card" onclick="togglePromptCard(this)">
+            <div class="prompt-top">
+              <span class="prompt-title">03 • Laugh Test</span>
+              <span class="prompt-check">✓</span>
+            </div>
+            <p class="prompt-question">What's the funniest movie, show, or story you've seen lately?</p>
+          </button>
+
+          <button type="button" class="prompt-card" onclick="togglePromptCard(this)">
+            <div class="prompt-top">
+              <span class="prompt-title">04 • School Check</span>
+              <span class="prompt-check">✓</span>
+            </div>
+            <p class="prompt-question">Which part of English or Maths feels easiest, and which feels annoying?</p>
+          </button>
+        </div>
+
+        <div class="class-deal-banner">
+          <span class="deal-badge">Our Class Deal</span>
+          <div class="deal-text">Work focused in short sprints → finish strong with a quick riddle or challenge.</div>
+        </div>
+      </section>
+
+      <!-- ===================================================================
+           SLIDE 5 — ENGLISH CHECK 1: SUMMARIZING & ORGANIZING IDEAS
+           =================================================================== -->
+      <section class="slide" data-slide="5" data-label="5. EN: Summary">
+        <div class="slide-header">
+          <div>
+            <div class="eyebrow-row">
+              <span class="eyebrow">English Check 1</span>
+              <span class="th-tag">วัดทักษะการสรุปและเรียบเรียงความคิด</span>
+            </div>
+            <h2 class="slide-title">Summarizing &amp; Organizing Ideas</h2>
+          </div>
+          <button type="button" id="model-summary-btn" class="btn btn-outline" onclick="toggleModelSummary()">
+            Show Model Summary
+          </button>
+        </div>
+
+        <div class="story-split">
+          <!-- Left Card: Folk Tale -->
+          <div class="story-card">
+            <div>
+              <div class="story-meta">Traditional Japanese Tale</div>
+              <h3 class="story-heading">The Stonecutter</h3>
+              <p class="story-body">
+                Long ago in Japan, a stonecutter grew tired of his hard work and wished to become a rich merchant. A mountain spirit granted his wish, yet the man soon envied a powerful prince, then the blazing sun, then a dark raincloud, and finally the wind. Each time he transformed into something stronger, he discovered something else with even greater power. When he became a giant mountain rock that even the wind could not move, he suddenly heard a steady tap-tap-tap at his feet—a humble stonecutter was chipping away at him. Realizing his own quiet strength, he asked to become himself again.
+              </p>
+            </div>
+
+            <div id="model-summary-box" class="model-summary-box hidden">
+              <strong>Model 3-Step Summary:</strong><br />
+              <strong>1. Beginning:</strong> A tired Japanese stonecutter wishes to become more powerful.<br />
+              <strong>2. Middle:</strong> After transforming into a merchant, prince, sun, cloud, wind, and giant rock, he hears a stonecutter chipping him away.<br />
+              <strong>3. Lesson:</strong> True strength comes from appreciating who you already are.
+            </div>
+          </div>
+
+          <!-- Right Card: Editable 3-Step Story Organizer -->
+          <div class="card organizer-card">
+            <div style="display:flex;justify-content:space-between;align-items:center;">
+              <h3 style="font-family:var(--font-sans);font-size:15px;font-weight:800;color:var(--navy);">3-Step Story Organizer</h3>
+              <span style="font-size:11px;font-weight:700;color:var(--emerald);background:var(--emerald-bg);padding:3px 9px;border-radius:999px;">Type Live</span>
+            </div>
+
+            <div class="field-group">
+              <label for="org-beg">1. Beginning — Character &amp; Problem</label>
+              <textarea id="org-beg" class="field-textarea" rows="2" placeholder="Who is the main character and what does he want?"></textarea>
+            </div>
+
+            <div class="field-group">
+              <label for="org-mid" style="color:var(--amber);">2. Middle — Turning Point</label>
+              <textarea id="org-mid" class="field-textarea" rows="3" placeholder="What keeps happening, and what surprises him as a giant rock?"></textarea>
+            </div>
+
+            <div class="field-group">
+              <label for="org-end" style="color:var(--emerald);">3. Ending — Main Lesson (1 Sentence)</label>
+              <textarea id="org-end" class="field-textarea" rows="2" placeholder="What lesson does the stonecutter learn at the end?"></textarea>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================================================================
+           SLIDE 6 — ENGLISH CHECK 2: EDITOR'S DESK — GRAMMAR & CLAUSES
+           =================================================================== -->
+      <section class="slide" data-slide="6" data-label="6. EN: Grammar">
+        <div class="slide-header">
+          <div>
+            <div class="eyebrow-row">
+              <span class="eyebrow">English Check 2</span>
+              <span class="th-tag">วัดพื้นฐานไวยากรณ์และโครงสร้างประโยค</span>
+            </div>
+            <h2 class="slide-title">Editor's Desk — Grammar &amp; Clauses</h2>
+          </div>
+          <button type="button" id="toggle-all-fixes-btn" class="btn btn-outline" onclick="toggleAllGrammarFixes()">
+            Reveal All Fixes
+          </button>
+        </div>
+
+        <div class="grid-2x2">
+          <!-- Card 1: Tenses & Pronouns -->
+          <div class="grammar-card">
+            <div>
+              <div class="grammar-top">
+                <span class="grammar-badge">1. Tenses &amp; Pronouns</span>
+                <button type="button" class="btn btn-outline btn-sm" onclick="toggleGrammarFix('fix-1', this)">Reveal Fix</button>
+              </div>
+              <p class="grammar-sentence">“Yesterday, the runner breaks the record and forgot their water bottle.”</p>
+            </div>
+            <div id="fix-1" class="grammar-fix hidden">
+              “Yesterday, the runner <span class="hl-fix">broke</span> the record and forgot <span class="hl-fix">his/her</span> water bottle.”
+              <span class="grammar-rule">Rule: Consistent past tense + clear singular pronoun</span>
+            </div>
+          </div>
+
+          <!-- Card 2: Homophones -->
+          <div class="grammar-card">
+            <div>
+              <div class="grammar-top">
+                <span class="grammar-badge">2. Homophones</span>
+                <button type="button" class="btn btn-outline btn-sm" onclick="toggleGrammarFix('fix-2', this)">Reveal Fix</button>
+              </div>
+              <p class="grammar-sentence">“Their sure the secret key is hidden over they're, beside there old map.”</p>
+            </div>
+            <div id="fix-2" class="grammar-fix hidden">
+              “<span class="hl-fix">They're</span> sure the secret key is hidden over <span class="hl-fix">there</span>, beside <span class="hl-fix">their</span> old map.”
+              <span class="grammar-rule">Rule: They're = they are • there = place • their = belonging</span>
+            </div>
+          </div>
+
+          <!-- Card 3: Direct Speech -->
+          <div class="grammar-card">
+            <div>
+              <div class="grammar-top">
+                <span class="grammar-badge">3. Direct Speech</span>
+                <button type="button" class="btn btn-outline btn-sm" onclick="toggleGrammarFix('fix-3', this)">Reveal Fix</button>
+              </div>
+              <p class="grammar-sentence" style="font-family:var(--font-mono);font-size:13.5px;">the coach shouted pass the ball before the whistle blows</p>
+            </div>
+            <div id="fix-3" class="grammar-fix hidden">
+              <span class="hl-fix">T</span>he coach shouted<span class="hl-fix">, "P</span>ass the ball before the whistle blows<span class="hl-fix">!"</span>
+              <span class="grammar-rule">Rule: Capital letter, comma before speech marks, punctuation inside quotes</span>
+            </div>
+          </div>
+
+          <!-- Card 4: Sentence Upgrade -->
+          <div class="grammar-card">
+            <div>
+              <div class="grammar-top">
+                <span class="grammar-badge amber">4. Sentence Upgrade (Clauses &amp; Adjectives)</span>
+                <button type="button" class="btn btn-outline btn-sm" onclick="toggleGrammarFix('fix-4', this)">Reveal Fix</button>
+              </div>
+              <p class="grammar-sentence" style="font-size:13.5px;margin-bottom:6px;">
+                Combine into 1 vivid Year 5 sentence: “The match was intense. The team stayed calm. They scored in the final minute.”
+              </p>
+              <input type="text" class="field-input" placeholder="Type Punn's upgraded sentence live here..." />
+            </div>
+            <div id="fix-4" class="grammar-fix hidden">
+              “<span class="hl-fix">Although</span> the match was <span class="hl-fix">fiercely intense</span>, the <span class="hl-fix">calm</span> team kept fighting and scored a <span class="hl-fix">thrilling</span> goal in the final minute.”
+              <span class="grammar-rule">Rule: Use a subordinate clause + vivid adjectives/adverbs to link ideas</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================================================================
+           SLIDE 7 — ENGLISH CHECK 3: CULTURAL CINDERELLA & HANDWRITING CHECK
+           =================================================================== -->
+      <section class="slide" data-slide="7" data-label="7. EN: Cinderella">
+        <div class="slide-header">
+          <div>
+            <div class="eyebrow-row">
+              <span class="eyebrow">English Check 3 • SBS This Week</span>
+              <span class="th-tag">วางโครงเรื่อง Cultural Cinderella &amp; เช็กลายมือ</span>
+            </div>
+            <h2 class="slide-title">Cultural Cinderella Blueprint &amp; Handwriting Check</h2>
+          </div>
+          <span class="header-pill">Brainstorm → Paper Sprint</span>
+        </div>
+
+        <!-- Top: 3-Column Interactive Planning Cards -->
+        <div class="plan-3col">
+          <div class="card plan-card">
+            <div class="plan-card-title">1. Country &amp; Setting</div>
+            <div class="plan-card-hint">e.g., Thailand, Japan, Italy — where does the story happen?</div>
+            <textarea class="field-textarea" placeholder="Type country, town, market, or palace ideas..."></textarea>
+          </div>
+
+          <div class="card plan-card">
+            <div class="plan-card-title">2. Hero &amp; Unfair Problem</div>
+            <div class="plan-card-hint">Who is your Cinderella, and what tough job do they have?</div>
+            <textarea class="field-textarea" placeholder="Character name, personality, and unfair chores..."></textarea>
+          </div>
+
+          <div class="card plan-card">
+            <div class="plan-card-title">3. Cultural Twist</div>
+            <div class="plan-card-hint">What replaces the fairy godmother &amp; the glass slipper?</div>
+            <textarea class="field-textarea" placeholder="Magical helper, cultural festival, and special lost item..."></textarea>
+          </div>
+        </div>
+
+        <!-- Bottom: Notebook Sprint + Countdown Timer -->
+        <div class="sprint-bottom">
+          <div class="card">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;">
+              <h3 style="font-family:var(--font-sans);font-size:15px;font-weight:800;color:var(--navy);">5-Sentence Notebook Sprint</h3>
+              <span style="font-size:11px;font-weight:700;color:var(--royal);">Snap &amp; Send via LINE</span>
+            </div>
+            <p style="font-family:var(--font-sans);font-size:12.5px;color:var(--text-body);">
+              Write <strong>5 complete sentences</strong> on real lined paper introducing your character and setting, then send a photo on LINE.
+            </p>
+            <div class="checklist-grid">
+              <label class="check-chip"><input type="checkbox" /><span>Finger spaces</span></label>
+              <label class="check-chip"><input type="checkbox" /><span>Letters sit on the line</span></label>
+              <label class="check-chip"><input type="checkbox" /><span>Capital letters &amp; full stops</span></label>
+              <label class="check-chip"><input type="checkbox" /><span>Consistent past tense</span></label>
+            </div>
+          </div>
+
+          <!-- Interactive Countdown Timer -->
+          <div class="timer-card">
+            <div class="timer-left">
+              <div class="timer-ring-wrap">
+                <svg viewBox="0 0 64 64" width="62" height="62" style="transform:rotate(-90deg);">
+                  <circle cx="32" cy="32" r="27" fill="none" stroke="rgba(255,255,255,0.14)" stroke-width="5" />
+                  <circle id="timer-ring" cx="32" cy="32" r="27" fill="none" stroke="#38BDF8" stroke-width="5" stroke-linecap="round" stroke-dasharray="169.65" stroke-dashoffset="0" style="transition:stroke-dashoffset 0.35s linear, stroke 0.25s ease;" />
+                </svg>
+                <span id="timer-ring-text" class="timer-ring-label">7M</span>
+              </div>
+              <div>
+                <div class="preset-row">
+                  <button type="button" id="preset-5" class="preset-btn" onclick="setTimerPreset(5)">5:00</button>
+                  <button type="button" id="preset-7" class="preset-btn active" onclick="setTimerPreset(7)">7:00</button>
+                </div>
+                <div id="timer-display" class="timer-digits">07:00</div>
+              </div>
+            </div>
+
+            <div class="timer-actions">
+              <button type="button" id="timer-start-btn" class="btn btn-primary btn-sm" onclick="startTimer()">Start</button>
+              <button type="button" id="timer-pause-btn" class="btn btn-amber btn-sm" onclick="pauseTimer()">Pause</button>
+              <button type="button" class="btn btn-sm" style="background:rgba(255,255,255,0.14);color:#FFF;" onclick="resetTimer()">Reset</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================================================================
+           SLIDE 8 — MATHS CHECK 1: ANGLES & MISCONCEPTION TRAP
+           =================================================================== -->
+      <section class="slide" data-slide="8" data-label="8. Maths: Angles">
+        <div class="slide-header">
+          <div>
+            <div class="eyebrow-row">
+              <span class="eyebrow">Maths Check 1 • SBS This Week</span>
+              <span class="th-tag">วัดความเข้าใจเรื่องมุม - บทเรียนสัปดาห์นี้</span>
+            </div>
+            <h2 class="slide-title">Angles &amp; Misconception Trap</h2>
+          </div>
+          <span class="header-pill">Click Each Angle Card to Reveal</span>
+        </div>
+
+        <!-- Top Row: 4 Accurate SVG Angles -->
+        <div class="angles-4col">
+          <div class="angle-card" onclick="toggleAngleCard('angle-ans-1')">
+            <div class="angle-card-top">
+              <span>Angle 1</span>
+              <span class="angle-reveal-hint">Click</span>
+            </div>
+            <div id="svg-angle-1" class="angle-svg-box"></div>
+            <div id="angle-ans-1" class="angle-answer-pill hidden">35° — Acute Angle<br /><span style="font-weight:500;">(less than 90°)</span></div>
+          </div>
+
+          <div class="angle-card" onclick="toggleAngleCard('angle-ans-2')">
+            <div class="angle-card-top">
+              <span>Angle 2</span>
+              <span class="angle-reveal-hint">Click</span>
+            </div>
+            <div id="svg-angle-2" class="angle-svg-box"></div>
+            <div id="angle-ans-2" class="angle-answer-pill hidden">90° — Right Angle<br /><span style="font-weight:500;">(exact 90° square corner)</span></div>
+          </div>
+
+          <div class="angle-card" onclick="toggleAngleCard('angle-ans-3')">
+            <div class="angle-card-top">
+              <span>Angle 3</span>
+              <span class="angle-reveal-hint">Click</span>
+            </div>
+            <div id="svg-angle-3" class="angle-svg-box"></div>
+            <div id="angle-ans-3" class="angle-answer-pill hidden">135° — Obtuse Angle<br /><span style="font-weight:500;">(between 90° and 180°)</span></div>
+          </div>
+
+          <div class="angle-card" onclick="toggleAngleCard('angle-ans-4')">
+            <div class="angle-card-top">
+              <span>Angle 4</span>
+              <span class="angle-reveal-hint" style="color:var(--amber);">Click</span>
+            </div>
+            <div id="svg-angle-4" class="angle-svg-box"></div>
+            <div id="angle-ans-4" class="angle-answer-pill hidden">250° — Reflex Angle<br /><span style="font-weight:500;">(180°–360°, outside arc!)</span></div>
+          </div>
+        </div>
+
+        <!-- Bottom Section: The Misconception Check -->
+        <div class="trap-card">
+          <div class="trap-head">
+            <div>
+              <div class="eyebrow" style="color:var(--amber);">The Misconception Check</div>
+              <h3 style="font-family:var(--font-sans);font-size:15.5px;font-weight:800;color:var(--navy);">
+                Which angle is larger — A, B, or Equal?
+              </h3>
+            </div>
+            <button type="button" id="overlay-btn" class="btn btn-navy" onclick="toggleAngleOverlay()">
+              Overlay &amp; Prove It
+            </button>
+          </div>
+
+          <div id="svg-trap-container" class="trap-svg-wrap"></div>
+
+          <div id="trap-takeaway" class="trap-takeaway">
+            <span>Compare Angle A (short rays: 65px) with Angle B (long rays: 130px).</span>
+            <span style="font-family:var(--font-mono);font-size:11px;">Interactive Proof</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================================================================
+           SLIDE 9 — MATHS CHECK 2: CALCULATIONS, DECIMALS, NEGATIVES & TIME
+           =================================================================== -->
+      <section class="slide" data-slide="9" data-label="9. Maths: Core">
+        <div class="slide-header">
+          <div>
+            <div class="eyebrow-row">
+              <span class="eyebrow">Maths Check 2</span>
+              <span class="th-tag">วัดพื้นฐานการคำนวณ ทศนิยม จำนวนติดลบ และเวลา</span>
+            </div>
+            <h2 class="slide-title">Calculations, Decimals, Negatives &amp; Time</h2>
+          </div>
+          <span class="header-pill">Talk Out Loud (Think Aloud)</span>
+        </div>
+
+        <div class="grid-2x2">
+          <!-- Card 1: Mental & Decimals -->
+          <div class="math-card-box">
+            <div class="grammar-top">
+              <span class="grammar-badge">1. Mental &amp; Decimals</span>
+              <button type="button" class="btn btn-outline btn-sm" onclick="toggleMathGroup('m-ans-1', this)">Show Answers</button>
+            </div>
+            <div class="math-q-list" id="m-ans-1">
+              <div class="math-q-row">
+                <span>68 + 47 = ?</span>
+                <span class="math-ans-tag hidden">115</span>
+              </div>
+              <div class="math-q-row">
+                <span>4.6 + 3.8 = ?</span>
+                <span class="math-ans-tag hidden">8.4</span>
+              </div>
+              <div class="math-q-row">
+                <span>7.2 − 2.9 = ?</span>
+                <span class="math-ans-tag hidden">4.3</span>
+              </div>
+            </div>
+            <div style="font-size:11px;color:var(--amber);font-weight:600;">Watch out: don't subtract backwards on 7.2 − 2.9!</div>
+          </div>
+
+          <!-- Card 2: Negative Numbers + SVG Number Line -->
+          <div class="math-card-box">
+            <div class="grammar-top">
+              <span class="grammar-badge amber">2. Negative Numbers</span>
+              <button type="button" class="btn btn-outline btn-sm" onclick="toggleMathGroup('m-ans-2', this)">Show Answers</button>
+            </div>
+            <div id="svg-number-line" style="width:100%;"></div>
+            <div class="math-q-list" id="m-ans-2">
+              <div class="math-q-row">
+                <span>4°C drops by 9°C. New temp?</span>
+                <span class="math-ans-tag hidden">−5°C</span>
+              </div>
+              <div class="math-q-row">
+                <span>Difference between −5 and +4?</span>
+                <span class="math-ans-tag hidden">9</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 3: Time & Time Zones -->
+          <div class="math-card-box">
+            <div class="grammar-top">
+              <span class="grammar-badge">3. Time &amp; Time Zones</span>
+              <button type="button" class="btn btn-outline btn-sm" onclick="toggleMathGroup('m-ans-3', this)">Show Answers</button>
+            </div>
+            <div class="math-q-list" id="m-ans-3">
+              <div class="math-q-row">
+                <span>Departs 14:35 + 2 hrs 40 mins = ?</span>
+                <span class="math-ans-tag hidden">17:15</span>
+              </div>
+              <div class="math-q-row">
+                <span>London 09:30 → Bangkok (+7 hrs)</span>
+                <span class="math-ans-tag hidden">16:30 (4:30 PM)</span>
+              </div>
+            </div>
+            <div style="font-size:11px;color:var(--text-muted);">Tip: Jump to the next whole hour first (60 mins = 1 hr).</div>
+          </div>
+
+          <!-- Card 4: 2D/3D Shapes Recall + Cube Net SVG -->
+          <div class="math-card-box">
+            <div class="grammar-top">
+              <span class="grammar-badge">4. 2D/3D Shapes Recall</span>
+              <button type="button" class="btn btn-outline btn-sm" onclick="toggleMathGroup('m-ans-4', this)">Show Answers</button>
+            </div>
+            <div class="shapes-row">
+              <div class="net-box" aria-label="6-square cube net diagram">
+                <svg viewBox="0 0 92 120" width="76" height="98">
+                  <rect x="32" y="4"  width="28" height="28" rx="3" fill="#EFF6FF" stroke="#2563EB" stroke-width="2" />
+                  <rect x="32" y="32" width="28" height="28" rx="3" fill="#DBEAFE" stroke="#2563EB" stroke-width="2" />
+                  <rect x="32" y="60" width="28" height="28" rx="3" fill="#EFF6FF" stroke="#2563EB" stroke-width="2" />
+                  <rect x="32" y="88" width="28" height="28" rx="3" fill="#EFF6FF" stroke="#2563EB" stroke-width="2" />
+                  <rect x="4"  y="32" width="28" height="28" rx="3" fill="#EFF6FF" stroke="#2563EB" stroke-width="2" />
+                  <rect x="60" y="32" width="28" height="28" rx="3" fill="#EFF6FF" stroke="#2563EB" stroke-width="2" />
+                </svg>
+              </div>
+              <div class="math-q-list" id="m-ans-4" style="flex:1;">
+                <div class="math-q-row">
+                  <span>Triangle with 3 equal sides?</span>
+                  <span class="math-ans-tag hidden">Equilateral</span>
+                </div>
+                <div class="math-q-row">
+                  <span>Square faces in a cube's net?</span>
+                  <span class="math-ans-tag hidden">6 squares</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================================================================
+           SLIDE 10 — PARENT DEBRIEF & NEXT STEPS (Thai for Parents)
+           =================================================================== -->
+      <section class="slide" data-slide="10" data-label="10. สรุปผล">
+        <div class="slide-header">
+          <div>
+            <div class="eyebrow-row">
+              <span class="eyebrow">Parent Debrief &amp; Next Steps</span>
+              <span class="th-tag">สรุปผลสำหรับคุณพ่อคุณแม่</span>
+            </div>
+            <h2 class="slide-title th-title">สรุปผลและแผนการเรียนสัปดาห์แรก</h2>
+          </div>
+          <span class="header-pill">Glow → Grow → Week 1 Plan</span>
+        </div>
+
+        <!-- 3 Editable Thai Debrief Cards -->
+        <div class="debrief-3col">
+          <div class="debrief-card">
+            <h3>จุดเด่นที่เห็นวันนี้ (Glow)</h3>
+            <textarea id="debrief-glow" class="field-textarea" placeholder="น้องมีไอเดียสร้างสรรค์ เล่าเรื่องสนุก และแยกมุมพื้นฐานได้เร็ว"></textarea>
+          </div>
+
+          <div class="debrief-card grow">
+            <h3>จุดที่จะโฟกัสพัฒนา (Grow)</h3>
+            <textarea id="debrief-grow" class="field-textarea" placeholder="การจัดลำดับประโยคและเครื่องหมายวรรคตอน ลายมือเวลาเร่งเขียน มุมกลับ (Reflex) และการลบทศนิยม"></textarea>
+          </div>
+
+          <div class="debrief-card plan">
+            <h3>แผนสัปดาห์ที่ 1 (Week 1 Plan)</h3>
+            <textarea id="debrief-plan" class="field-textarea" placeholder="วางโครงและเขียนร่าง Cultural Cinderella ให้ครบโครงสร้าง + ตะลุยโจทย์ Angles & MyiMaths ให้แม่นก่อนสอบ"></textarea>
+          </div>
+        </div>
+
+        <!-- Polite Schedule Tip Callout -->
+        <div class="schedule-callout">
+          <strong>ข้อแนะนำเรื่องเวลาเรียน:</strong> สำหรับน้องวัย 9 ขวบ หากเรียนช่วงค่ำ แนะนำพักเบรก 10 นาทีกลางคาบ หรือแบ่งเป็นสัปดาห์ละ 2 ครั้ง ครั้งละ 1 ชม. เพื่อให้น้องโฟกัสได้เต็มที่ครับ
+        </div>
+
+        <!-- Copy LINE Recap Action Bar -->
+        <div class="line-action-bar">
+          <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
+            <span style="font-size:13px;color:#E2E8F0;">พร้อมส่งสรุป 3 หัวข้อให้คุณพ่อคุณแม่ทาง LINE หลังจบคลาสทันที</span>
+            <span id="line-copied-toast" class="inline-toast">✓ คัดลอกแล้ว!</span>
+          </div>
+          <button type="button" class="btn btn-emerald" style="padding:10px 18px;font-size:13px;" onclick="copyThaiLineRecap()">
+            คัดลอกข้อความสรุปส่ง LINE
+          </button>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- =======================================================================
+       COLLAPSIBLE PRESENTER NOTES DRAWER (Toggle via button or 'N')
+       ======================================================================= -->
+  <aside id="notes-drawer" class="notes-drawer" aria-label="แนวทางพูดสำหรับผู้สอน">
+    <div class="notes-header">
+      <span id="notes-title" class="notes-title">แนวทางพูด (Presenter Notes) — สไลด์ 1</span>
+      <button type="button" class="btn btn-outline btn-sm" onclick="toggleNotesDrawer()">ปิด (N) ✕</button>
+    </div>
+    <p id="notes-body" class="notes-body"></p>
+  </aside>
+
+  <!-- =======================================================================
+       FIXED BOTTOM NAVIGATION BAR
+       ======================================================================= -->
+  <nav class="bottom-nav" aria-label="Slide Navigation">
+    <div class="nav-group">
+      <button type="button" id="prev-btn" class="nav-btn" onclick="prevSlide()">
+        ← <span class="nav-label-desktop">Previous</span>
+      </button>
+      <span id="slide-counter" class="slide-counter">1 / 10</span>
+      <button type="button" id="next-btn" class="nav-btn primary" onclick="nextSlide()">
+        <span class="nav-label-desktop">Next</span> →
+      </button>
+    </div>
+
+    <!-- Clickable Slide Jump Pills + Dropdown -->
+    <div class="nav-group">
+      <div id="jump-pills" class="jump-pills"></div>
+      <select id="jump-select" class="jump-select" aria-label="Jump to slide" onchange="goToSlide(Number(this.value))"></select>
+    </div>
+
+    <!-- Notes & Fullscreen Toggles -->
+    <div class="nav-group">
+      <button type="button" id="notes-btn" class="nav-btn" onclick="toggleNotesDrawer()" title="Presenter Notes (N)">
+        📝 <span class="nav-label-desktop">แนวทางพูด / Notes</span>
+      </button>
+      <button type="button" id="fs-btn" class="nav-btn" onclick="toggleFullscreen()" title="Fullscreen (F)">
+        ⛶ <span class="nav-label-desktop">Fullscreen</span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- =======================================================================
+       PURE VANILLA JAVASCRIPT ENGINE (Zero External Libraries)
+       ======================================================================= -->
+  <script>
+    (function () {
+      'use strict';
+
+      /* ---------------------------------------------------------------------
+         1. PRESENTER NOTES DATA (Thai Guidance for Slides 1–10)
+         --------------------------------------------------------------------- */
+      const PRESENTER_NOTES = {
+        1: 'ทักทายคุณพ่อคุณแม่และน้องปันอย่างเป็นกันเอง แจ้งว่าวันนี้เป็นคลาสทำความรู้จัก วางแผนการเรียน และลองทำแบบฝึกหัดสั้นๆ แบบไม่กดดันเพื่อดูพื้นฐานของน้องครับ',
+        2: 'แนะนำประวัติการศึกษาและประสบการณ์กับหลักสูตรนานาชาติให้คุณพ่อคุณแม่มั่นใจ และบอกน้องปันว่าเรียนกับพี่ไม่ต้องเกร็ง เราจะค่อยๆ ฝึกไปด้วยกัน',
+        3: 'ชี้ให้คุณพ่อคุณแม่เห็นว่าบทเรียนที่เราจะติวเดินคู่ไปกับเนื้อหา SBS Term 1B โดยตรง และถามความต้องการเรื่องสัดส่วนเวลา English vs Maths',
+        4: 'ชวนน้องคุยสบายๆ 3-5 นาที เพื่อละลายพฤติกรรมและสร้างข้อตกลงร่วมกันแบบพี่ชายใจดีแต่มีกติกาชัดเจน',
+        5: 'ให้น้องอ่านหรือฟังแล้วสรุปปากเปล่าเป็น 3 ขั้นตอน สังเกตว่าน้องจับใจความสำคัญได้ไหม หรือเล่าข้ามไปข้ามมา',
+        6: 'ให้น้องสวมบทบาท "คุณครูตรวจการบ้าน" จับผิดประโยค 1-3 และลองรวมประโยคข้อ 4 อย่าเพิ่งรีบแก้ให้ทันที ให้สังเกตจุดที่น้องยังลังเล',
+        7: 'ตรงกับบทเรียน SBS สัปดาห์นี้พอดี ช่วยกันคิดไอเดียสนุกๆ 2-3 นาที แล้วจับเวลาให้น้องเขียนลงสมุดมีเส้น 5 ประโยค ส่งรูปมาทาง LINE เพื่อเช็กลายมือและโครงสร้างประโยคจริง',
+        8: 'เช็กความเข้าใจเรื่องมุมแหลม มุมฉาก มุมป้าน และมุมกลับ (Reflex) รวมถึงกับดักที่เด็ก Year 5 มักพลาดคือคิดว่าเส้นยาวกว่า = มุมใหญ่กว่า กดปุ่ม Overlay เพื่อให้น้องเห็นภาพชัดเจน',
+        9: 'ให้น้องพูดวิธีคิดออกเสียง (Think aloud) เพื่อดูว่าน้องติดตรงขั้นตอนไหน ไม่จำเป็นต้องทำครบทุกข้อหากเวลากระชั้น',
+        10: 'สรุปผลด้วยสูตร จุดเด่น → จุดที่ต้องเสริม → แผนสัปดาห์หน้า เพื่อให้คุณแม่สบายใจและเห็นภาพชัดเจน จากนั้นกดคัดลอกสรุปส่ง LINE หลังจบคลาสทันที'
+      };
+
+      /* ---------------------------------------------------------------------
+         2. SLIDE NAVIGATION & STATE
+         --------------------------------------------------------------------- */
+      const slides = Array.from(document.querySelectorAll('.slide'));
+      const totalSlides = slides.length;
+      let currentSlide = 1;
+      let notesOpen = false;
+
+      const counterEl = document.getElementById('slide-counter');
+      const prevBtn = document.getElementById('prev-btn');
+      const nextBtn = document.getElementById('next-btn');
+      const pillsContainer = document.getElementById('jump-pills');
+      const jumpSelect = document.getElementById('jump-select');
+      const notesDrawer = document.getElementById('notes-drawer');
+      const notesTitle = document.getElementById('notes-title');
+      const notesBody = document.getElementById('notes-body');
+      const notesBtn = document.getElementById('notes-btn');
+
+      function initNavigationControls() {
+        pillsContainer.innerHTML = '';
+        jumpSelect.innerHTML = '';
+
+        slides.forEach((slide, index) => {
+          const num = index + 1;
+          const label = slide.getAttribute('data-label') || ('Slide ' + num);
+
+          // Pill button
+          const pill = document.createElement('button');
+          pill.type = 'button';
+          pill.className = 'jump-pill' + (num === 1 ? ' active' : '');
+          pill.textContent = String(num);
+          pill.title = label;
+          pill.setAttribute('aria-label', 'Go to ' + label);
+          pill.addEventListener('click', () => goToSlide(num));
+          pillsContainer.appendChild(pill);
+
+          // Select option
+          const opt = document.createElement('option');
+          opt.value = String(num);
+          opt.textContent = label;
+          jumpSelect.appendChild(opt);
+        });
+      }
+
+      function updateNotesDrawer() {
+        const label = slides[currentSlide - 1].getAttribute('data-label') || ('Slide ' + currentSlide);
+        notesTitle.textContent = 'แนวทางพูด (Presenter Notes) — ' + label;
+        notesBody.textContent = PRESENTER_NOTES[currentSlide] || '';
+      }
+
+      function goToSlide(num) {
+        if (num < 1 || num > totalSlides) return;
+        currentSlide = num;
+
+        slides.forEach((s, idx) => {
+          s.classList.toggle('active', idx + 1 === currentSlide);
+        });
+
+        counterEl.textContent = currentSlide + ' / ' + totalSlides;
+        prevBtn.disabled = currentSlide === 1;
+        nextBtn.disabled = currentSlide === totalSlides;
+        jumpSelect.value = String(currentSlide);
+
+        const pills = pillsContainer.querySelectorAll('.jump-pill');
+        pills.forEach((p, idx) => {
+          p.classList.toggle('active', idx + 1 === currentSlide);
+        });
+
+        updateNotesDrawer();
+      }
+
+      function nextSlide() {
+        if (currentSlide < totalSlides) goToSlide(currentSlide + 1);
+      }
+
+      function prevSlide() {
+        if (currentSlide > 1) goToSlide(currentSlide - 1);
+      }
+
+      function toggleNotesDrawer() {
+        notesOpen = !notesOpen;
+        notesDrawer.classList.toggle('open', notesOpen);
+        notesBtn.classList.toggle('active-toggle', notesOpen);
+      }
+
+      /* ---------------------------------------------------------------------
+         3. FULLSCREEN & TOAST HELPERS
+         --------------------------------------------------------------------- */
+      let toastTimeout = null;
+      function showFloatingToast(msg) {
+        const el = document.getElementById('floating-toast');
+        el.textContent = msg;
+        el.classList.add('show');
+        if (toastTimeout) clearTimeout(toastTimeout);
+        toastTimeout = setTimeout(() => el.classList.remove('show'), 2600);
+      }
+
+      function toggleFullscreen() {
+        try {
+          if (!document.fullscreenElement) {
+            if (document.documentElement.requestFullscreen) {
+              document.documentElement.requestFullscreen().catch(() => {
+                showFloatingToast('Fullscreen is restricted inside this embedded preview.');
+              });
+            } else {
+              showFloatingToast('Fullscreen is not supported in this browser.');
+            }
+          } else if (document.exitFullscreen) {
+            document.exitFullscreen();
+          }
+        } catch (err) {
+          showFloatingToast('Could not toggle fullscreen mode.');
+        }
+      }
+
+      /* Keyboard Shortcuts (disabled while typing inside any form field) */
+      document.addEventListener('keydown', (e) => {
+        const active = document.activeElement;
+        if (active) {
+          const tag = active.tagName.toLowerCase();
+          if (tag === 'input' || tag === 'textarea' || tag === 'select' || active.isContentEditable) {
+            return;
+          }
+        }
+
+        if (e.key === 'ArrowRight') {
+          e.preventDefault();
+          nextSlide();
+        } else if (e.key === 'ArrowLeft') {
+          e.preventDefault();
+          prevSlide();
+        } else if (e.key === 'f' || e.key === 'F') {
+          e.preventDefault();
+          toggleFullscreen();
+        } else if (e.key === 'n' || e.key === 'N') {
+          e.preventDefault();
+          toggleNotesDrawer();
+        }
+      });
+
+      /* ---------------------------------------------------------------------
+         4. SLIDE 4, 5, 6 INTERACTIVE HANDLERS
+         --------------------------------------------------------------------- */
+      function togglePromptCard(btnEl) {
+        btnEl.classList.toggle('checked');
+      }
+
+      function toggleModelSummary() {
+        const box = document.getElementById('model-summary-box');
+        const btn = document.getElementById('model-summary-btn');
+        const isOpening = box.classList.contains('hidden');
+        box.classList.toggle('hidden', !isOpening);
+        btn.textContent = isOpening ? 'Hide Model Summary' : 'Show Model Summary';
+      }
+
+      function toggleGrammarFix(fixId, btnEl) {
+        const box = document.getElementById(fixId);
+        if (!box) return;
+        const isOpening = box.classList.contains('hidden');
+        box.classList.toggle('hidden', !isOpening);
+        btnEl.textContent = isOpening ? 'Hide Fix' : 'Reveal Fix';
+      }
+
+      let allFixesRevealed = false;
+      function toggleAllGrammarFixes() {
+        allFixesRevealed = !allFixesRevealed;
+        const mainBtn = document.getElementById('toggle-all-fixes-btn');
+        mainBtn.textContent = allFixesRevealed ? 'Hide All Fixes' : 'Reveal All Fixes';
+
+        ['fix-1', 'fix-2', 'fix-3', 'fix-4'].forEach((id) => {
+          const box = document.getElementById(id);
+          if (!box) return;
+          box.classList.toggle('hidden', !allFixesRevealed);
+          const cardBtn = box.parentElement.querySelector('.grammar-top button');
+          if (cardBtn) cardBtn.textContent = allFixesRevealed ? 'Hide Fix' : 'Reveal Fix';
+        });
+      }
+
+      /* ---------------------------------------------------------------------
+         5. SLIDE 7: COUNTDOWN TIMER (5:00 & 7:00 Presets)
+         --------------------------------------------------------------------- */
+      const RING_CIRCUMFERENCE = 2 * Math.PI * 27; // 169.65
+      let timerTotalSec = 7 * 60;
+      let timerRemainSec = timerTotalSec;
+      let timerHandle = null;
+
+      function renderTimerUI() {
+        const mins = Math.floor(timerRemainSec / 60);
+        const secs = timerRemainSec % 60;
+        const display = document.getElementById('timer-display');
+        const ring = document.getElementById('timer-ring');
+        const ringText = document.getElementById('timer-ring-text');
+
+        display.textContent = String(mins).padStart(2, '0') + ':' + String(secs).padStart(2, '0');
+
+        const fraction = timerTotalSec > 0 ? timerRemainSec / timerTotalSec : 0;
+        ring.style.strokeDashoffset = (RING_CIRCUMFERENCE * (1 - fraction)).toFixed(2);
+
+        if (timerRemainSec === 0) {
+          ring.setAttribute('stroke', '#059669');
+          ringText.textContent = 'DONE';
+        } else if (timerRemainSec <= 60) {
+          ring.setAttribute('stroke', '#D97706');
+          ringText.textContent = timerRemainSec + 's';
+        } else {
+          ring.setAttribute('stroke', '#38BDF8');
+          ringText.textContent = Math.ceil(timerRemainSec / 60) + 'M';
+        }
+      }
+
+      function setTimerPreset(minutes) {
+        pauseTimer();
+        timerTotalSec = minutes * 60;
+        timerRemainSec = timerTotalSec;
+        document.getElementById('preset-5').classList.toggle('active', minutes === 5);
+        document.getElementById('preset-7').classList.toggle('active', minutes === 7);
+        renderTimerUI();
+      }
+
+      function startTimer() {
+        if (timerHandle) return;
+        if (timerRemainSec === 0) timerRemainSec = timerTotalSec;
+        timerHandle = setInterval(() => {
+          if (timerRemainSec > 0) {
+            timerRemainSec -= 1;
+            renderTimerUI();
+          } else {
+            pauseTimer();
+            showFloatingToast('Time is up! Snap a photo of your 5 sentences and send via LINE.');
+          }
+        }, 1000);
+      }
+
+      function pauseTimer() {
+        if (timerHandle) {
+          clearInterval(timerHandle);
+          timerHandle = null;
+        }
+      }
+
+      function resetTimer() {
+        pauseTimer();
+        timerRemainSec = timerTotalSec;
+        renderTimerUI();
+      }
+
+      /* ---------------------------------------------------------------------
+         6. SLIDE 8: EXACT TRIGONOMETRIC SVG ANGLES & OVERLAY PROOF
+         --------------------------------------------------------------------- */
+      function polarToSvg(cx, cy, r, deg) {
+        const rad = (deg * Math.PI) / 180;
+        return {
+          x: cx + r * Math.cos(rad),
+          y: cy - r * Math.sin(rad)
+        };
+      }
+
+      function buildAngleSvg({ containerId, deg, cx, cy, rayLen, arcR, isRight, isReflex }) {
+        const container = document.getElementById(containerId);
+        if (!container) return;
+
+        const r1 = polarToSvg(cx, cy, rayLen, 0);
+        const r2 = polarToSvg(cx, cy, rayLen, deg);
+        let arcMarkup = '';
+
+        if (isRight) {
+          const sq = 18;
+          arcMarkup = `
+            <polyline points="${cx + sq},${cy} ${cx + sq},${cy - sq} ${cx},${cy - sq}"
+                      fill="rgba(217, 119, 6, 0.14)" stroke="#D97706" stroke-width="2.6" stroke-linejoin="round" />
+          `;
+        } else {
+          const a1 = polarToSvg(cx, cy, arcR, 0);
+          const a2 = polarToSvg(cx, cy, arcR, deg);
+          const largeArc = deg > 180 ? 1 : 0;
+          const strokeColor = isReflex ? '#D97706' : '#2563EB';
+          const fillColor = isReflex ? 'rgba(217, 119, 6, 0.16)' : 'rgba(56, 189, 248, 0.16)';
+          const strokeWidth = isReflex ? '3.4' : '2.8';
+
+          arcMarkup = `
+            <path d="M ${cx} ${cy} L ${a1.x.toFixed(2)} ${a1.y.toFixed(2)} A ${arcR} ${arcR} 0 ${largeArc} 0 ${a2.x.toFixed(2)} ${a2.y.toFixed(2)} Z"
+                  fill="${fillColor}" />
+            <path d="M ${a1.x.toFixed(2)} ${a1.y.toFixed(2)} A ${arcR} ${arcR} 0 ${largeArc} 0 ${a2.x.toFixed(2)} ${a2.y.toFixed(2)}"
+                  fill="none" stroke="${strokeColor}" stroke-width="${strokeWidth}" stroke-linecap="round" />
+          `;
+        }
+
+        container.innerHTML = `
+          <svg viewBox="0 0 180 114" width="100%" height="100%" role="img" aria-label="${deg} degree angle diagram">
+            ${arcMarkup}
+            <line x1="${cx}" y1="${cy}" x2="${r1.x.toFixed(2)}" y2="${r1.y.toFixed(2)}" stroke="#0F2347" stroke-width="3.2" stroke-linecap="round" />
+            <line x1="${cx}" y1="${cy}" x2="${r2.x.toFixed(2)}" y2="${r2.y.toFixed(2)}" stroke="#0F2347" stroke-width="3.2" stroke-linecap="round" />
+            <circle cx="${cx}" cy="${cy}" r="4" fill="#0F2347" />
+          </svg>
+        `;
+      }
+
+      function buildMisconceptionTrapSvg() {
+        const container = document.getElementById('svg-trap-container');
+        if (!container) return;
+
+        const deg = 50;
+        const arcR = 32;
+
+        // Angle A: short rays (65px) at vertex (55, 128)
+        const aCx = 55, aCy = 128, aLen = 65;
+        const aR1 = polarToSvg(aCx, aCy, aLen, 0);
+        const aR2 = polarToSvg(aCx, aCy, aLen, deg);
+        const aA1 = polarToSvg(aCx, aCy, arcR, 0);
+        const aA2 = polarToSvg(aCx, aCy, arcR, deg);
+
+        // Angle B: long rays (130px) at vertex (255, 128) => exact +200px shift
+        const bCx = 255, bCy = 128, bLen = 130;
+        const bR1 = polarToSvg(bCx, bCy, bLen, 0);
+        const bR2 = polarToSvg(bCx, bCy, bLen, deg);
+        const bA1 = polarToSvg(bCx, bCy, arcR, 0);
+        const bA2 = polarToSvg(bCx, bCy, arcR, deg);
+
+        container.innerHTML = `
+          <svg viewBox="0 0 460 150" width="100%" height="132" role="img" aria-label="Comparison of two 50 degree angles with short and long rays">
+            <!-- Static Angle B (Long Rays: 130px) -->
+            <g id="trap-angle-b">
+              <path id="trap-b-fill" d="M ${bCx} ${bCy} L ${bA1.x.toFixed(2)} ${bA1.y.toFixed(2)} A ${arcR} ${arcR} 0 0 0 ${bA2.x.toFixed(2)} ${bA2.y.toFixed(2)} Z" fill="rgba(37, 99, 235, 0.12)" />
+              <path id="trap-b-arc" d="M ${bA1.x.toFixed(2)} ${bA1.y.toFixed(2)} A ${arcR} ${arcR} 0 0 0 ${bA2.x.toFixed(2)} ${bA2.y.toFixed(2)}" fill="none" stroke="#2563EB" stroke-width="3" stroke-linecap="round" />
+              <line x1="${bCx}" y1="${bCy}" x2="${bR1.x.toFixed(2)}" y2="${bR1.y.toFixed(2)}" stroke="#0F2347" stroke-width="3.2" stroke-linecap="round" />
+              <line x1="${bCx}" y1="${bCy}" x2="${bR2.x.toFixed(2)}" y2="${bR2.y.toFixed(2)}" stroke="#0F2347" stroke-width="3.2" stroke-linecap="round" />
+              <circle cx="${bCx}" cy="${bCy}" r="4.2" fill="#0F2347" />
+              <text x="${bCx + 68}" y="${bCy + 17}" fill="#475569" font-family="Plus Jakarta Sans, sans-serif" font-size="12" font-weight="700">Angle B (Long)</text>
+            </g>
+
+            <!-- Sliding Angle A (Short Rays: 65px) -->
+            <g id="trap-angle-a">
+              <path id="trap-a-fill" d="M ${aCx} ${aCy} L ${aA1.x.toFixed(2)} ${aA1.y.toFixed(2)} A ${arcR} ${arcR} 0 0 0 ${aA2.x.toFixed(2)} ${aA2.y.toFixed(2)} Z" fill="rgba(217, 119, 6, 0.18)" />
+              <path id="trap-a-arc" d="M ${aA1.x.toFixed(2)} ${aA1.y.toFixed(2)} A ${arcR} ${arcR} 0 0 0 ${aA2.x.toFixed(2)} ${aA2.y.toFixed(2)}" fill="none" stroke="#D97706" stroke-width="3.2" stroke-linecap="round" />
+              <line x1="${aCx}" y1="${aCy}" x2="${aR1.x.toFixed(2)}" y2="${aR1.y.toFixed(2)}" stroke="#2563EB" stroke-width="3.4" stroke-linecap="round" />
+              <line x1="${aCx}" y1="${aCy}" x2="${aR2.x.toFixed(2)}" y2="${aR2.y.toFixed(2)}" stroke="#2563EB" stroke-width="3.4" stroke-linecap="round" />
+              <circle cx="${aCx}" cy="${aCy}" r="4.2" fill="#2563EB" />
+              <text x="${aCx + 2}" y="${aCy + 17}" fill="#2563EB" font-family="Plus Jakarta Sans, sans-serif" font-size="12" font-weight="700">Angle A (Short)</text>
+            </g>
+
+            <!-- Proof Callout Badge -->
+            <g id="trap-proof-badge" style="opacity:0; transition:opacity 0.4s ease 0.35s;">
+              <rect x="315" y="70" width="128" height="28" rx="8" fill="#059669" />
+              <text x="379" y="88" text-anchor="middle" fill="#FFFFFF" font-family="Plus Jakarta Sans, sans-serif" font-size="12" font-weight="700">Equal: Both 50°</text>
+            </g>
+          </svg>
+        `;
+      }
+
+      function toggleAngleCard(ansId) {
+        const el = document.getElementById(ansId);
+        if (el) el.classList.toggle('hidden');
+      }
+
+      let isTrapOverlaid = false;
+      function toggleAngleOverlay() {
+        isTrapOverlaid = !isTrapOverlaid;
+        const aGroup = document.getElementById('trap-angle-a');
+        const aArc = document.getElementById('trap-a-arc');
+        const bArc = document.getElementById('trap-b-arc');
+        const aFill = document.getElementById('trap-a-fill');
+        const bFill = document.getElementById('trap-b-fill');
+        const badge = document.getElementById('trap-proof-badge');
+        const btn = document.getElementById('overlay-btn');
+        const takeaway = document.getElementById('trap-takeaway');
+
+        if (isTrapOverlaid) {
+          aGroup.classList.add('overlaid');
+          aArc.setAttribute('stroke', '#059669');
+          bArc.setAttribute('stroke', '#059669');
+          aFill.setAttribute('fill', 'rgba(5, 150, 105, 0.22)');
+          bFill.setAttribute('fill', 'rgba(5, 150, 105, 0.14)');
+          badge.style.opacity = '1';
+          btn.textContent = 'Reset View';
+          btn.className = 'btn btn-emerald';
+          takeaway.classList.add('proved');
+          takeaway.innerHTML = '<span>✓ Equal (50°)! Angle size = amount of turn, NOT line length.</span>';
+        } else {
+          aGroup.classList.remove('overlaid');
+          aArc.setAttribute('stroke', '#D97706');
+          bArc.setAttribute('stroke', '#2563EB');
+          aFill.setAttribute('fill', 'rgba(217, 119, 6, 0.18)');
+          bFill.setAttribute('fill', 'rgba(37, 99, 235, 0.12)');
+          badge.style.opacity = '0';
+          btn.textContent = 'Overlay & Prove It';
+          btn.className = 'btn btn-navy';
+          takeaway.classList.remove('proved');
+          takeaway.innerHTML = '<span>Compare Angle A (short rays: 65px) with Angle B (long rays: 130px).</span><span style="font-family:var(--font-mono);font-size:11px;">Interactive Proof</span>';
+        }
+      }
+
+      /* ---------------------------------------------------------------------
+         7. SLIDE 9: MATHS REVEALS & CLICKABLE SVG NUMBER LINE (-10 to +10)
+         --------------------------------------------------------------------- */
+      function toggleMathGroup(groupId, btnEl) {
+        const group = document.getElementById(groupId);
+        if (!group) return;
+        const tags = Array.from(group.querySelectorAll('.math-ans-tag'));
+        const willShow = tags.some((t) => t.classList.contains('hidden'));
+        tags.forEach((t) => t.classList.toggle('hidden', !willShow));
+        btnEl.textContent = willShow ? 'Hide Answers' : 'Show Answers';
+      }
+
+      let nlSelected = [];
+      function renderNumberLineSvg() {
+        const container = document.getElementById('svg-number-line');
+        if (!container) return;
+
+        const w = 440, h = 58, padX = 20, y = 26;
+        const step = (w - padX * 2) / 20;
+
+        let spanSvg = '';
+        if (nlSelected.length === 2) {
+          const minV = Math.min(nlSelected[0], nlSelected[1]);
+          const maxV = Math.max(nlSelected[0], nlSelected[1]);
+          const x1 = padX + (minV + 10) * step;
+          const x2 = padX + (maxV + 10) * step;
+          const midX = (x1 + x2) / 2;
+          spanSvg = `
+            <line x1="${x1.toFixed(1)}" y1="${y}" x2="${x2.toFixed(1)}" y2="${y}" stroke="#D97706" stroke-width="4.5" stroke-linecap="round" />
+            <rect x="${(midX - 24).toFixed(1)}" y="1" width="48" height="16" rx="6" fill="#FFFBEB" stroke="#D97706" stroke-width="1" />
+            <text x="${midX.toFixed(1)}" y="12.5" text-anchor="middle" fill="#B45309" font-family="ui-monospace, monospace" font-size="9.5" font-weight="700">Δ = ${maxV - minV}</text>
+          `;
+        }
+
+        let ticksSvg = '';
+        for (let val = -10; val <= 10; val++) {
+          const x = padX + (val + 10) * step;
+          const isZero = val === 0;
+          const isMajor = val % 2 === 0;
+          const isSel = nlSelected.includes(val);
+          const tTop = isZero ? y - 9 : (isMajor ? y - 6 : y - 4);
+          const tBot = isZero ? y + 9 : (isMajor ? y + 6 : y + 4);
+          const stroke = isZero ? '#2563EB' : (val < 0 ? '#94A3B8' : '#475569');
+
+          let labelSvg = '';
+          if (isSel || isZero || isMajor) {
+            const fill = isSel ? '#B45309' : (isZero ? '#2563EB' : (val < 0 ? '#64748B' : '#0F2347'));
+            const text = val > 0 ? '+' + val : String(val);
+            labelSvg = `<text x="${x.toFixed(1)}" y="51" text-anchor="middle" fill="${fill}" font-family="ui-monospace, monospace" font-size="${isSel || isZero ? '10.5' : '9'}" font-weight="${isSel || isZero ? '700' : '600'}">${text}</text>`;
+          }
+
+          ticksSvg += `
+            <g class="nl-tick-hit" data-nl-val="${val}">
+              <rect x="${(x - step / 2).toFixed(1)}" y="6" width="${step.toFixed(1)}" height="50" fill="transparent" />
+              <line x1="${x.toFixed(1)}" y1="${tTop}" x2="${x.toFixed(1)}" y2="${tBot}" stroke="${stroke}" stroke-width="${isZero ? 2.6 : 1.5}" stroke-linecap="round" />
+              ${isZero && !isSel ? `<circle cx="${x.toFixed(1)}" cy="${y}" r="3.5" fill="#2563EB" />` : ''}
+              ${isSel ? `<circle cx="${x.toFixed(1)}" cy="${y}" r="5.5" fill="#D97706" stroke="#FFFFFF" stroke-width="1.8" />` : ''}
+              ${labelSvg}
+            </g>
+          `;
+        }
+
+        container.innerHTML = `
+          <svg viewBox="0 0 ${w} ${h}" width="100%" height="58" role="img" aria-label="Number line from -10 to +10">
+            <line x1="${padX - 8}" y1="${y}" x2="${w - padX + 8}" y2="${y}" stroke="#CBD5E1" stroke-width="2" stroke-linecap="round" />
+            <polyline points="${padX - 4},${y - 4} ${padX - 9},${y} ${padX - 4},${y + 4}" fill="none" stroke="#94A3B8" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+            <polyline points="${w - padX + 4},${y - 4} ${w - padX + 9},${y} ${w - padX + 4},${y + 4}" fill="none" stroke="#94A3B8" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+            ${spanSvg}
+            ${ticksSvg}
+          </svg>
+        `;
+
+        container.querySelectorAll('.nl-tick-hit').forEach((g) => {
+          g.addEventListener('click', () => {
+            const v = Number(g.getAttribute('data-nl-val'));
+            if (nlSelected.includes(v)) {
+              nlSelected = nlSelected.filter((n) => n !== v);
+            } else if (nlSelected.length >= 2) {
+              nlSelected = [v];
+            } else {
+              nlSelected.push(v);
+            }
+            renderNumberLineSvg();
+          });
+        });
+      }
+
+      /* ---------------------------------------------------------------------
+         8. SLIDE 10: POLITE THAI LINE RECAP GENERATOR
+         --------------------------------------------------------------------- */
+      let inlineToastTimer = null;
+      function copyThaiLineRecap() {
+        const glowEl = document.getElementById('debrief-glow');
+        const growEl = document.getElementById('debrief-grow');
+        const planEl = document.getElementById('debrief-plan');
+
+        const glow = glowEl.value.trim() || glowEl.placeholder;
+        const grow = growEl.value.trim() || growEl.placeholder;
+        const plan = planEl.value.trim() || planEl.placeholder;
+
+        const recap = [
+          'สวัสดีครับคุณพ่อคุณแม่ พี่ริชาร์ดขอสรุปผลการเรียนคาบแรกของน้องปัน (Year 5 SBS Bangkok) วันนี้นะครับ',
+          '',
+          '✨ จุดเด่นที่เห็นวันนี้ (Glow):',
+          '• ' + glow,
+          '',
+          '🎯 จุดที่จะโฟกัสพัฒนา (Grow):',
+          '• ' + grow,
+          '',
+          '📘 แผนสัปดาห์ที่ 1 (Week 1 Plan):',
+          '• ' + plan,
+          '',
+          '🕒 ข้อแนะนำเรื่องเวลาเรียน:',
+          '• สำหรับน้องวัย 9 ขวบ หากเรียนช่วงค่ำ แนะนำพักเบรก 10 นาทีกลางคาบ หรือแบ่งเป็นสัปดาห์ละ 2 ครั้ง ครั้งละ 1 ชม. เพื่อให้น้องโฟกัสได้เต็มที่ครับ',
+          '',
+          'ขอบคุณคุณพ่อคุณแม่มากนะครับ หากมีงานโรงเรียนหรือ MyiMaths เพิ่มเติมส่งมาทาง LINE ได้ตลอดเลยครับ'
+        ].join('\n');
+
+        // Reliable iframe-safe clipboard copy
+        const helper = document.createElement('textarea');
+        helper.value = recap;
+        helper.setAttribute('readonly', '');
+        helper.style.position = 'fixed';
+        helper.style.left = '-9999px';
+        document.body.appendChild(helper);
+        helper.select();
+        let ok = false;
+        try {
+          ok = document.execCommand('copy');
+        } catch (err) {
+          ok = false;
+        }
+        document.body.removeChild(helper);
+
+        if (ok) {
+          const toast = document.getElementById('line-copied-toast');
+          toast.classList.add('show');
+          if (inlineToastTimer) clearTimeout(inlineToastTimer);
+          inlineToastTimer = setTimeout(() => toast.classList.remove('show'), 2800);
+        } else {
+          showFloatingToast('ไม่สามารถคัดลอกอัตโนมัติได้ กรุณาลองใหม่อีกครั้งครับ');
+        }
+      }
+
+      /* ---------------------------------------------------------------------
+         9. EXPOSE PUBLIC HANDLERS & INITIALIZE
+         --------------------------------------------------------------------- */
+      window.goToSlide = goToSlide;
+      window.nextSlide = nextSlide;
+      window.prevSlide = prevSlide;
+      window.toggleNotesDrawer = toggleNotesDrawer;
+      window.toggleFullscreen = toggleFullscreen;
+      window.togglePromptCard = togglePromptCard;
+      window.toggleModelSummary = toggleModelSummary;
+      window.toggleGrammarFix = toggleGrammarFix;
+      window.toggleAllGrammarFixes = toggleAllGrammarFixes;
+      window.setTimerPreset = setTimerPreset;
+      window.startTimer = startTimer;
+      window.pauseTimer = pauseTimer;
+      window.resetTimer = resetTimer;
+      window.toggleAngleCard = toggleAngleCard;
+      window.toggleAngleOverlay = toggleAngleOverlay;
+      window.toggleMathGroup = toggleMathGroup;
+      window.copyThaiLineRecap = copyThaiLineRecap;
+
+      document.addEventListener('DOMContentLoaded', () => {
+        initNavigationControls();
+        goToSlide(1);
+        renderTimerUI();
+
+        // Build exact trigonometric SVG angles on Slide 8
+        buildAngleSvg({ containerId: 'svg-angle-1', deg: 35,  cx: 36, cy: 90, rayLen: 100, arcR: 34, isRight: false, isReflex: false });
+        buildAngleSvg({ containerId: 'svg-angle-2', deg: 90,  cx: 56, cy: 94, rayLen: 74,  arcR: 22, isRight: true,  isReflex: false });
+        buildAngleSvg({ containerId: 'svg-angle-3', deg: 135, cx: 94, cy: 94, rayLen: 72,  arcR: 28, isRight: false, isReflex: false });
+        buildAngleSvg({ containerId: 'svg-angle-4', deg: 250, cx: 92, cy: 56, rayLen: 48,  arcR: 22, isRight: false, isReflex: true  });
+
+        buildMisconceptionTrapSvg();
+        renderNumberLineSvg();
+      });
+    })();
+  </script>
+</body>
+</html>
